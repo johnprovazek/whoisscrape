@@ -1,0 +1,4 @@
+./Results/*
+!./Results/com
+!./Results/net
+!./Results/us

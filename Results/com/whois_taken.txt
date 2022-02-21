@@ -1,21 +1,20 @@
-   Domain Name: HELLO.COM
-   Registry Domain ID: 1219089_DOMAIN_COM-VRSN
-   Registrar WHOIS Server: whois.google.com
-   Registrar URL: http://domains.google.com
-   Updated Date: 2017-08-25T04:19:34Z
-   Creation Date: 1997-04-30T04:00:00Z
-   Registry Expiry Date: 2024-05-01T04:00:00Z
-   Registrar: Google LLC
-   Registrar IANA ID: 895
-   Registrar Abuse Contact Email: registrar-abuse@google.com
-   Registrar Abuse Contact Phone: +1.8772376466
-   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
-   Name Server: NS5.DNSMADEEASY.COM
-   Name Server: NS6.DNSMADEEASY.COM
-   Name Server: NS7.DNSMADEEASY.COM
+   Domain Name: A.COM
+   Registry Domain ID: 592980_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.iana.org
+   Registrar URL: http://res-dom.iana.org
+   Updated Date: 2021-12-09T08:19:38Z
+   Creation Date: 1993-12-01T05:00:00Z
+   Registry Expiry Date: 2022-12-08T16:57:30Z
+   Registrar: RESERVED-Internet Assigned Numbers Authority
+   Registrar IANA ID: 376
+   Registrar Abuse Contact Email:
+   Registrar Abuse Contact Phone:
+   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited
+   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited
+   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited
    DNSSEC: unsigned
    URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
->>> Last update of whois database: 2019-11-30T17:57:27Z <<<
+>>> Last update of whois database: 2022-02-21T20:43:24Z <<<
 
 For more information on Whois status codes, please visit https://icann.org/epp
 
@@ -52,3 +51,14 @@ reserves the right to modify these terms at any time.
 
 The Registry database contains ONLY .COM, .NET, .EDU domains and
 Registrars.
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+domain:       A.COM
+
+organisation: Internet Assigned Numbers Authority
+
+created:      1992-01-01
+source:       IANA
+

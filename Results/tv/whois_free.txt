@@ -1,5 +1,5 @@
-No match for "ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.TV".
->>> Last update of WHOIS database: 2019-11-30T17:57:37Z <<<
+No match for domain "ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.TV".
+>>> Last update of WHOIS database: 2022-02-21T20:43:17Z <<<
 
 NOTICE: The expiration date displayed in this record is the date the
 registrar's sponsorship of the domain name registration in the registry is
