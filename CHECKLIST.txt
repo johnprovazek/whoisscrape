@@ -1,8 +1,0 @@
-ALPHA1 com - pass - all taken
-ALPHA1 computer - pass - two taken
-ALPHA1 io - fail - resulted in error sometimes for n.io and x.io. Sometimes it passed fine?
-ALPHA1 net - pass - all taken
-ALPHA1 org - pass - all taken
-ALPHA1 tv - fail - g.com and i.com not actually available
-ALPHA1 us - pass - all taken
-ALPHA1 work - pass - all taken, different dates

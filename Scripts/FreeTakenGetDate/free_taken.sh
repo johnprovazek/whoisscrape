@@ -1,5 +1,4 @@
 #!/bin/bash
-# DIFFERENT
 
 STR=`cat $1 | head -n 1 | cut -c 1-9`
 if [ "$STR" == "   Domain" ]

@@ -2,3 +2,14 @@ Results/*
 !Results/com/
 !Results/net/
 !Results/us/
+Results/com/*/DomainError/*
+Results/net/*/DomainError/*
+Results/us/*/DomainError/*
+Results/com/*/DomainTaken/*
+Results/net/*/DomainTaken/*
+Results/us/*/DomainTaken/*
+Results/com/*/DomainFree/*
+Results/net/*/DomainFree/*
+Results/us/*/DomainFree/*
+Scripts/FreeTakenGetDate/notes.txt
+Scripts/tempfile.txt

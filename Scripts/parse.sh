@@ -1,11 +1,11 @@
 #!/bin/bash
-# $1 - Name of file containing list of domain extensions. Do not include path. Should be under "DomainExtensions" Directory. Assuming ".txt" extension.
-# $2 - Name of file containing list of domain names. Do not include path. Should be user "DomainNames" Directory. Assuming ".txt" extension.
-# Example "./parse.sh COM.txt ALPHA1.txt"
+# $1 - Name of file containing wordlist of domain names. Do not include path. Should be under "DomainNames" Directory.
+# $2 - Name of file containing wordlist of domain extensions. Do not include path. Should be under "DomainExtensions" Directory.
+# Example "./parse.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt"
 
-# Setting function variables
-domainextensionsfilename=$1
-domainnamefilename=$2
+# Setting variables
+domainnamefilename=$1
+domainextensionsfilename=$2
 domainnamefilenamenoextension=${domainnamefilename::-4}
 
 # Checking if Result directory is setup
@@ -20,29 +20,27 @@ do
     if [ ! -d "../Results/$extension" ] 
     then
         mkdir "../Results/$extension"
-        mkdir "../Results/$extension/DomainError"
-        mkdir "../Results/$extension/DomainFree"
-        mkdir "../Results/$extension/DomainTaken"
-        mkdir "../Results/$extension/Scripts"
-        if [ -d "./FreeTakenGetDate/$extension" ] 
-        then
-            cp "./FreeTakenGetDate/$extension/free_taken.sh" "../Results/$extension/Scripts/free_taken.sh"
-            cp "./FreeTakenGetDate/$extension/get_date.sh" "../Results/$extension/Scripts/get_date.sh"
-        else
-            cp "./FreeTakenGetDate/free_taken.sh" "../Results/$extension/Scripts/free_taken.sh"
-            cp "./FreeTakenGetDate/get_date.sh" "../Results/$extension/Scripts/get_date.sh"
-        fi
+    fi
 
+    if [ ! -d "../Results/$extension/$domainnamefilenamenoextension" ] 
+    then
+        mkdir "../Results/$extension/$domainnamefilenamenoextension"
+        mkdir "../Results/$extension/$domainnamefilenamenoextension/DomainError"
+        mkdir "../Results/$extension/$domainnamefilenamenoextension/DomainFree"
+        mkdir "../Results/$extension/$domainnamefilenamenoextension/DomainTaken"
+    fi
+
+    if [ ! -d "./FreeTakenGetDate/$extension" ] 
+    then
+        mkdir "./FreeTakenGetDate/$extension"
+        cp "./FreeTakenGetDate/free_taken.sh" "./FreeTakenGetDate/$extension/free_taken.sh"
+        cp "./FreeTakenGetDate/get_date.sh" "./FreeTakenGetDate/$extension/get_date.sh"
         # These are used as a reference to adapt the free_taken.sh and get_date.sh scripts. 
-        whois A.$extension > "../Results/$extension/whois_taken.txt"
-        whois ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.$extension > "../Results/$extension/whois_free.txt"
-
-        #Setting up domain name directories
-        mkdir "../Results/$extension/DomainError/$domainnamefilenamenoextension"
-        mkdir "../Results/$extension/DomainFree/$domainnamefilenamenoextension"
-        mkdir "../Results/$extension/DomainTaken/$domainnamefilenamenoextension"
+        whois A.$extension > "./FreeTakenGetDate/$extension/whois_taken.txt"
+        whois ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.$extension > "./FreeTakenGetDate/$extension/whois_free.txt"
     fi
 done < ../DomainExtensions/$domainextensionsfilename
+
 
 
 
@@ -56,17 +54,17 @@ do
     do
         whoiscounter=$((whoiscounter+1))
         whois $domain.$extension > tempfile.txt
-        DATA=$(cat tempfile.txt | ../Results/$extension/Scripts/free_taken.sh)
+        DATA=$(cat tempfile.txt | ./FreeTakenGetDate/$extension/free_taken.sh)
         echo $whoiscounter: $domain.$extension
         if [ "$DATA" == "free" ]
         then
-            echo $domain >> ../Results/$extension/DomainFree/$domainnamefilenamenoextension/free_$TIME.txt
+            echo $domain >> ../Results/$extension/$domainnamefilenamenoextension/DomainFree/free_$TIME.txt
         elif [ "$DATA" == "taken" ]
         then
-            DATE=$(cat tempfile.txt | ../Results/$extension/Scripts/get_date.sh)
-            echo $domain $DATE >> ../Results/$extension/DomainTaken/$domainnamefilenamenoextension/taken_$TIME.txt
+            DATE=$(cat tempfile.txt | ./FreeTakenGetDate/$extension/get_date.sh)
+            echo $domain $DATE >> ../Results/$extension/$domainnamefilenamenoextension/DomainTaken/taken_$TIME.txt
         else
-            echo $domain >> ../Results/$extension/DomainError/$domainnamefilenamenoextension/error_$TIME.txt
+            echo $domain >> ../Results/$extension/$domainnamefilenamenoextension/DomainError/error_$TIME.txt
         fi
     done < ../DomainNames/$domainnamefilename
 done < ../DomainExtensions/$domainextensionsfilename
