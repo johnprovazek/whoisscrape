@@ -8,7 +8,10 @@ Built using Bash.
 
 ## Installation
 
-This is a Bash script. This script will need to be ran on a terminal that supports Bash. 
+This is a Bash script. This script will need to be ran on a terminal that supports Bash. When running this on a Windows machine you may need to use the command *dos2unix*. If you would like to convert all *.txt* and *.sh* with the dos2unix command here is a command you could run on the parent directory:
+```
+find . -type f \( -iname "*.txt" -o -iname "*.sh" \) -exec dos2unix {} +
+```
 
 ## Usage
 
@@ -46,7 +49,7 @@ The last steps you may need to take are modifying the *free_taken.sh* and *get_d
 
 
 
-## Bugs & Features
+## Bugs & Improvements
 - Additionally output the results to a json file.
 - Parallelize parse.sh to speed up script.
 - Spend some time working on free_taken.sh scripts for popular extensions.
