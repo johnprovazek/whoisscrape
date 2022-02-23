@@ -2,7 +2,9 @@
 
 ## Description
 
-This project was initially created to find the smallest possible domain name I could purchase. This script works by running the whois command on a loop with a domain name wordlist and domain extension wordlist. I have rewritten this project as a template that can be run with any domain name wordlist and domain extension wordlist of your choice. This is a helpful project if you would like to quickly query the avaliablity of a specific list of domain names.
+This project was initially created with the intention to find the smallest possible domain name I could purchase. This script works by running the *whois* command on a loop with a domain name wordlist and domain extension wordlist. I have rewritten this project as a template that can be run with any domain name wordlist and domain extension wordlist. This project is helpful if you would like to quickly query the avaliablity of a specific list of domain names.
+
+Built using Bash.
 
 ## Installation
 
