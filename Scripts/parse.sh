@@ -48,9 +48,9 @@ done < ../DomainExtensions/$domainextensionsfilename
 whoiscounter=0
 TIME="$(date +%Y_%m_%d_%H_%M_%S)"
 
-while read extension
+while read extension || [ -n "$extension" ]
 do
-    while read domain
+    while read domain || [ -n "$domain" ]
     do
         whoiscounter=$((whoiscounter+1))
         whois $domain.$extension > tempfile.txt

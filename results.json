@@ -1,0 +1,67 @@
+{
+    "net": {
+        "SAMPLENAMES": {
+            "Taken": [
+                {
+                    "Date": "2021-11-15", 
+                    "DomainName": "cooldomainname"
+                }, 
+                {
+                    "Date": "1999-03-15", 
+                    "DomainName": "google"
+                }
+            ], 
+            "Free": [
+                "johnprovazek"
+            ], 
+            "Error": [
+                "cooldomainname", 
+                "google", 
+                "johnprovazek"
+            ]
+        }
+    }, 
+    "com": {
+        "SAMPLENAMES": {
+            "Taken": [
+                {
+                    "Date": "2020-02-09", 
+                    "DomainName": "cooldomainname"
+                }, 
+                {
+                    "Date": "1997-09-15", 
+                    "DomainName": "google"
+                }, 
+                {
+                    "Date": "2019-04-30", 
+                    "DomainName": "johnprovazek"
+                }
+            ], 
+            "Free": [], 
+            "Error": [
+                "cooldomainname", 
+                "google", 
+                "johnprovazek"
+            ]
+        }
+    }, 
+    "us": {
+        "SAMPLENAMES": {
+            "Taken": [
+                {
+                    "Date": "2002-04-19", 
+                    "DomainName": "google"
+                }
+            ], 
+            "Free": [
+                "cooldomainname", 
+                "johnprovazek"
+            ], 
+            "Error": [
+                "cooldomainname", 
+                "google", 
+                "johnprovazek"
+            ]
+        }
+    }
+}
