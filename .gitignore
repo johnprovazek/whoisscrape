@@ -13,3 +13,6 @@ Results/net/*/DomainFree/*
 Results/us/*/DomainFree/*
 Scripts/FreeTakenGetDate/notes.txt
 Scripts/tempfile.txt
+Scripts/full_list_temp.txt
+./results.json
+results.json

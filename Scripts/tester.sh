@@ -1,8 +1,7 @@
 #!/bin/bash
 # $1 - Name of file containing wordlist of domain names. Do not include path. Should be under "DomainNames" Directory.
 # $2 - Name of file containing wordlist of domain extensions. Do not include path. Should be under "DomainExtensions" Directory.
-# $3 - If the thrid argument is "parallel" the script will be run in parallel.
-# Example "./parse.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt"
+# Example "./tester.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt"
 
 # Setting variables
 domainnamefilename=$1
@@ -16,7 +15,7 @@ then
 fi
 
 # Checking if extension directories are setup
-while read extension || [ -n "$extension" ]
+while read extension
 do
     if [ ! -d "../Results/$extension" ] 
     then
@@ -25,7 +24,6 @@ do
 
     if [ ! -d "../Results/$extension/$domainnamefilenamenoextension" ] 
     then
-        
         mkdir "../Results/$extension/$domainnamefilenamenoextension"
         mkdir "../Results/$extension/$domainnamefilenamenoextension/DomainError"
         mkdir "../Results/$extension/$domainnamefilenamenoextension/DomainFree"
@@ -55,30 +53,9 @@ while read extension || [ -n "$extension" ]
 do
     while read domain || [ -n "$domain" ]
     do
-        if [ "$3" == "parallel" ]
-        then
-            whoiscounter=$((whoiscounter+1))
-            echo $whoiscounter $domain.$extension >> full_list_temp.txt
-        else
-            whoiscounter=$((whoiscounter+1))
-            whois $domain.$extension > whois_temp.txt
-            DATA=$(cat whois_temp.txt | ./FreeTakenGetDate/$extension/free_taken.sh)
-            echo $whoiscounter: $domain.$extension
-            if [ "$DATA" == "free" ]
-            then
-                echo $domain >> ../Results/$extension/$domainnamefilenamenoextension/DomainFree/free_$TIME.txt
-            elif [ "$DATA" == "taken" ]
-            then
-                DATE=$(cat whois_temp.txt | ./FreeTakenGetDate/$extension/get_date.sh)
-                echo $domain $DATE >> ../Results/$extension/$domainnamefilenamenoextension/DomainTaken/taken_$TIME.txt
-            else
-                echo $domain >> ../Results/$extension/$domainnamefilenamenoextension/DomainError/error_$TIME.txt
-            fi
-        fi
+        whoiscounter=$((whoiscounter+1))
+        echo $whoiscounter $domain.$extension >> full_list_temp.txt
     done < ../DomainNames/$domainnamefilename
 done < ../DomainExtensions/$domainextensionsfilename
 
-if [ "$3" == "parallel" ]
-then
-    cat full_list_temp.txt | parallel ./Helper/whois_parallel.sh {} $domainnamefilenamenoextension $TIME
-fi
+cat full_list_temp.txt | parallel ./Helper/whois_parallel.sh {} $domainnamefilenamenoextension $TIME
