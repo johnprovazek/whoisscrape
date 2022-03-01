@@ -63,18 +63,23 @@ for extension_dir in extension_dir_list:
         data_list.sort(key=lambda y: y[0])
         print(extension_dir + ":" + str(data_list))
         if data_list[2][0] != datetime.datetime(2000,1,1):
+            date_striped = data_list[2][0].strftime("%Y_%m_%d_%H_%M_%S")
+            date = {"Date":date_striped}
+            data[extension_dir][domain_dir_name].update(date)
+
+
             loop_file = open(root_dir + "/" + extension_dir + "/" + domain_dir_name + "/Domain" + data_list[2][2] + "/" + data_list[2][1], "r")
             lines = loop_file.readlines()
             for line in lines:
                 # print(line.strip())
                 data[extension_dir][domain_dir_name][data_list[2][2]].append(line.strip())
-        if data_list[1][0] != datetime.datetime(2000,1,1) and data_list[1][0] == data_list[2][0]:
+        elif data_list[1][0] != datetime.datetime(2000,1,1) and data_list[1][0] == data_list[2][0]:
             loop_file = open(root_dir + "/" + extension_dir + "/" + domain_dir_name + "/Domain" + data_list[1][2] + "/" + data_list[1][1], "r")
             lines = loop_file.readlines()
             for line in lines:
                 # print(line.strip())
                 data[extension_dir][domain_dir_name][data_list[1][2]].append(line.strip())
-        if data_list[0][0] != datetime.datetime(2000,1,1) and data_list[0][0] == data_list[2][0]:
+        elif data_list[0][0] != datetime.datetime(2000,1,1) and data_list[0][0] == data_list[2][0]:
             loop_file = open(root_dir + "/" + extension_dir + "/" + domain_dir_name + "/Domain" + data_list[0][2] + "/" + data_list[0][1], "r")
             lines = loop_file.readlines()
             for line in lines:

@@ -1,0 +1,1 @@
+awk '/^p/' ENGLISHDICT.txt | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- | awk '{print $0"prints.com"}' > PRINTS.txt

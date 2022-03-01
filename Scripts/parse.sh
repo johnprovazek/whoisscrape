@@ -2,7 +2,7 @@
 # $1 - Name of file containing wordlist of domain names. Do not include path. Should be under "DomainNames" Directory.
 # $2 - Name of file containing wordlist of domain extensions. Do not include path. Should be under "DomainExtensions" Directory.
 # $3 - If the thrid argument is "parallel" the script will be run in parallel.
-# Example "./parse.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt"
+# Example "./parse.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt parallel"
 
 # Setting variables
 domainnamefilename=$1

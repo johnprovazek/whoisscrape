@@ -1,0 +1,48 @@
+html{
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+
+.center{
+    text-align: center;
+}
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "free_header taken_header error_header"
+        "free taken error"; 
+}
+.free_header { 
+    grid-area: free_header; 
+    text-align: center;
+    background-color: red;
+}
+.taken_header { 
+    grid-area: taken_header; 
+    text-align: center;
+    background-color: blue;
+}
+.error_header { 
+    grid-area: error_header; 
+    text-align: center;
+    background-color: green;
+}
+.free { 
+    grid-area: free;
+    background-color: yellow; 
+}
+.taken { 
+    grid-area: taken;
+    background-color: pink; 
+}
+.error { 
+    grid-area: error;
+    background-color: purple; 
+}

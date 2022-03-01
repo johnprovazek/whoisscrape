@@ -1,9 +1,76 @@
-<!doctype html>
-<html>
-  <head>
-    <title>whoisscrape</title>
-  </head>
-  <body>
-    <p>In the future I would like to publish the results of whoisscrape project for common domain wordlists and domain extensions. For now you can access my project on <a href="https://github.com/johnprovazek/whoisscrape">github</a>. </p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>whoisscrape</title>
+        <link rel="icon" type="image/x-icon" href="web/img/favicon.ico">
+        <link rel="stylesheet" href="web/css/index.css">
+    </head>
+
+    <body>
+        <h1 class="center"> whoisscrape</h1>
+        <p class="center"> This page is to display select results from my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> repo.</p>
+        <div class="container">
+            <div class="free_header">Free:</div>
+            <div class="taken_header">Taken:</div>
+            <div class="error_header">Error:</div>
+            <div class="free">
+                <ul>
+                    <li>Coffee.com</li>
+                    <li>Tea.com</li>
+                    <li>Milk.com</li>
+                </ul>
+            </div>
+            <div class="taken">
+                <ul>
+                    <li>Coffee.com 9/18/1980</li>
+                    <li>Tea.com 3/14/1991</li>
+                    <li>Milk.com 4/16/2005</li>
+                </ul>
+            </div>
+            <div class="error">
+                <ul>
+                    <li>Coffee.com</li>
+                    <li>Tea.com</li>
+                    <li>Milk.com</li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="dropdownGroup text-center">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                    <button id="domainDropdown" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        ALPHA3
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="domainDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA1', null)">ALPHA1</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA2', null)">ALPHA2</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA3', null)">ALPHA3</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="extensionDropdown" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        .com
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="extensionDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.com')">.com</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.net')">.net</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.us')">.us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <label>Domain:</label>
+            <div class="btn-group btn-dark" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">ALPHA1</label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">ALPHA2</label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">ALPHA3</label>
+            </div>
+        </div> -->
+    </body>
+    <script src="web/js/index.js"></script>
 </html>
