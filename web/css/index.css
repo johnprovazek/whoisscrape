@@ -16,8 +16,8 @@ body{
 
 h1{
     font-size: 3em;
-    margin-top: 0.416em;
-    margin-bottom: 0.416em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 h2{
@@ -26,22 +26,14 @@ h2{
     margin-bottom: 0;
 }
 
-
-p{
-    font-size: 1em; 
-    text-align: center;
-    width: min(56em,98vw);
-    margin:auto;
-    background-color: #F1F1F1;
-    border-radius: 0.2em;
+ol {
+    padding-left: 0;
 }
 
-.empty{
-    height: 30em;
-}
-
-.center{
-    text-align: center;
+li{
+    list-style-type: none;
+    height: 1.5em;
+    line-height: 1.5em;
 }
 
 .radioSelected {
@@ -53,15 +45,6 @@ p{
 .radioUnselected {
     color: #292f33;
     background-color: #F1F1F1;
-}
-
-.radioLabel{
-    text-align: center;
-    height: 3em;
-    line-height: 3em;
-    width: auto;
-    margin: 0;
-    padding: 0;
 }
 
 .radioContainer {
@@ -78,7 +61,6 @@ p{
     display: inline-block;
     vertical-align: middle;
     margin: 0 auto;
-    padding: 0;
 }
 
 .radioButton:first-child {
@@ -91,49 +73,64 @@ p{
     border-top-right-radius: 0.2em;
 }
 
-#headerContainer {
-    width: min(56em,98vw);
+#header1Container {
+    width: min(56em,100%);
+    height: 6em;
+    line-height: 6em;
+    text-align: center;
+    margin: auto;
+}
+
+#header2Container {
+    width: min(56em,100%);
     height: 3em;
     line-height: 3em;
     text-align: center;
     margin: auto;
 }
 
-.twoHeaderLine{
+.splitHeader{
     display: inline-block;
-    width: min(18.66em,49vw);
+    width: min(28em,50%);
 }
 
 #freeTakenContainer{
-    width: min(56em,98vw);
+    width: 100%;
     text-align: center;
-    margin: auto;
 }
 
-.results{
-    width: min(28em,49vw);
+#freeTakenBackgroundContainer{
+    width: min(56em,100%);
+    display: inline-block;
+    margin: 0;
+    border-radius: 0.2em;
     background-color: #F1F1F1;
 }
 
+.freeTakenListContainer{
+    width: min(28em,50%);
+    display: inline-block;
+    vertical-align: top;
+}
+
 #free{
-    float:left;
-    border-bottom-left-radius: 0.2em;
-    border-top-left-radius: 0.2em;
-    margin-bottom:3em;
+    /* background-color: orange; */
 }
 #taken{
-    float:right;
-    border-bottom-right-radius: 0.2em;
-    border-top-right-radius: 0.2em;
-    margin-bottom:3em;
+    /* background-color: blanchedalmond; */
 }
 
-ol {
-    padding-left: 0;
+#paragraphContainer{
+    width: min(56em,100%);
+    height: 6em;
+    line-height: 2em;
+    text-align: center;
+    margin: auto;
+    background-color: #F1F1F1;
+    border-radius: 0.2em;
 }
 
-li{
-    list-style-type: none;
-    height: 1.5em;
-    line-height: 1.5em;
+#info{
+    /* text-align: center; */
+    /* vertical-align: middle; */
 }

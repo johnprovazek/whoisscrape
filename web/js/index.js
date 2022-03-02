@@ -62,15 +62,14 @@ function toggleRadioButtonBackground(){
 
 function setParagraphPadding(){
     var element = document.getElementById("info")
+    var container = document.getElementById("paragraphContainer")
     var computedStyle = getComputedStyle(element);
     var paragraph_height = element.clientHeight;  // height with padding    
     paragraph_height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
     var paragraph_height_em = paragraph_height/parseFloat(font_size)
-    var increment_of_3 = Math.ceil(paragraph_height_em/3.0) * 3
-    var padding_amount = (increment_of_3 - paragraph_height_em) / 2
-    var string_padding = padding_amount + "em"
-    element.style.paddingTop = string_padding;
-    element.style.paddingBottom = string_padding;
+    var increment_of_3 = Math.ceil(paragraph_height_em/2.0) * 2
+    var container_height = increment_of_3 + "em"
+    container.style.height = container_height
 }
 
 function readTextFile(file, callback) {
@@ -86,15 +85,8 @@ function readTextFile(file, callback) {
 }
 
 function fillTables(domain,extension){
-    // var free_element = document.getElementById("free")
-    // var free_element_height = free_element.clientHeight
-    // free_element.style.height="0px";
-    // var taken_element = document.getElementById("taken")
-    // var taken_element_height = taken_element.clientHeight
-    // taken_element.style.height="0px";
-
     var free_array = json_data[extension][domain.toUpperCase()]["Free"]
-    var free_list = document.getElementById("free_list");
+    var free_list = document.getElementById("freeList");
     free_list.innerHTML = "";
     for (var i = 0; i < free_array.length; i++) {
         var li = document.createElement("li");
@@ -102,19 +94,11 @@ function fillTables(domain,extension){
         free_list.appendChild(li);
     }
     var taken_array = json_data[extension][domain.toUpperCase()]["Taken"]
-    var taken_list = document.getElementById("taken_list");
+    var taken_list = document.getElementById("takenList");
     taken_list.innerHTML = "";
     for (var i = 0; i < taken_array.length; i++) {
         var li = document.createElement("li");
         li.appendChild(document.createTextNode(taken_array[i] + "." + extension));
         taken_list.appendChild(li);
     }
-
-    // console.log(free_element_height + ":" + taken_element_height)
-    // if(free_element_height < taken_element_height){
-    //     free_element.style.height=taken_element_height + "px";
-    // }
-    // else{
-    //     taken_element.style.height=free_element_height + "px";;
-    // }
 }

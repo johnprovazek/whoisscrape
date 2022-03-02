@@ -6,14 +6,17 @@
         <link rel="icon" type="image/x-icon" href="web/img/favicon.ico">
         <link rel="stylesheet" href="web/css/index.css">
     </head>
-
     <body>
-        <h1 class="center"> whoisscrape</h1>
-        <p id="info" class="center"> This page is for displaying select results from a script I developed that can be found in my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> GitHub repo. The script is a bash script to run the whois command on a loop through a list of domain names and domain extensions. </p>
-        <div id="headerContainer">
+        <div id="header1Container">
+            <h1 id="mainHeader"> whoisscrape</h1>
+        </div>
+        <div id="paragraphContainer">
+            <p id="info"> This page is for displaying select results from a script I developed that can be found in my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> GitHub repo. The script is a bash script to run the whois command on a loop through a list of domain names and domain extensions. </p>
+        </div>
+        <div id="header2Container">
             <h2 id="domainNamesLabel">Domain Names Wordlist:</h2>
         </div>
-        <div id="domainNamesRadio" class="radioContainer center">
+        <div id="domainNamesRadio" class="radioContainer">
             <div id="alpha1" class="radioButton domainRadioButton radioUnselected" onclick="showResults('alpha1',null)">ALPHA1</div
             ><div id="alpha2" class="radioButton domainRadioButton radioUnselected" onclick="showResults('alpha2',null)">ALPHA2</div
             ><div id="alpha3" class="radioButton domainRadioButton radioSelected" onclick="showResults('alpha3',null)">ALPHA3</div
@@ -22,7 +25,7 @@
             ><div id="girlnames" class="radioButton domainRadioButton radioUnselected" onclick="showResults('girlnames',null)">GIRLNAMES</div
             ><div id="boynames" class="radioButton domainRadioButton radioUnselected" onclick="showResults('boynames',null)">BOYNAMES</div>
         </div>
-        <div id="headerContainer">
+        <div id="header2Container">
             <h2 id="extensionNamesLabel">Domain Extensions:</h2>
         </div>
         <div id="extensionNamesRadio" class="radioContainer">
@@ -34,17 +37,19 @@
             ><div id="tv" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'tv')">.tv</div
             ><div id="work" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null ,'work')">.work</div>
         </div>
-        <div id="headerContainer">
-            <h2 class="twoHeaderLine">Free</h2><h2 class="twoHeaderLine">Taken</h2>
+        <div id="header2Container">
+            <h2 class="splitHeader">Free</h2><h2 class="splitHeader">Taken</h2>
         </div>
         <div id="freeTakenContainer">
-            <div id="free" class="results">
-                <ol id="free_list">
-                </ol>
-            </div
-            ><div id="taken" class="results">
-                <ol id="taken_list">
-                </ol>
+            <div id="freeTakenBackgroundContainer">
+                <div id="free" class="freeTakenListContainer">
+                    <ol id="freeList">
+                    </ol>
+                </div
+                ><div id="taken" class="freeTakenListContainer">
+                    <ol id="takenList">
+                    </ol>
+                </div>
             </div>
         </div>
     </body>
