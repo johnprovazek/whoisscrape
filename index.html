@@ -9,68 +9,138 @@
 
     <body>
         <h1 class="center"> whoisscrape</h1>
-        <p class="center"> This page is to display select results from my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> repo.</p>
-        <div class="container">
-            <div class="free_header">Free:</div>
-            <div class="taken_header">Taken:</div>
-            <div class="error_header">Error:</div>
-            <div class="free">
-                <ul>
-                    <li>Coffee.com</li>
-                    <li>Tea.com</li>
-                    <li>Milk.com</li>
-                </ul>
-            </div>
-            <div class="taken">
-                <ul>
-                    <li>Coffee.com 9/18/1980</li>
-                    <li>Tea.com 3/14/1991</li>
-                    <li>Milk.com 4/16/2005</li>
-                </ul>
-            </div>
-            <div class="error">
-                <ul>
-                    <li>Coffee.com</li>
-                    <li>Tea.com</li>
-                    <li>Milk.com</li>
-                </ul>
+        <p id="info" class="center"> This page is for displaying select results from a script I developed that can be found in my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> GitHub repo. The script is a bash script to run the whois command on a loop through a list of domain names and domain extensions. </p>
+        <div id="headerContainer">
+            <h2 id="domainNamesLabel">Domain Names Wordlist:</h2>
+        </div>
+        <div id="domainNamesRadio" class="radioContainer center">
+            <div id="alpha1" class="radioButton domainRadioButton radioUnselected" onclick="showResults('alpha1',null)">ALPHA1</div
+            ><div id="alpha2" class="radioButton domainRadioButton radioUnselected" onclick="showResults('alpha2',null)">ALPHA2</div
+            ><div id="alpha3" class="radioButton domainRadioButton radioSelected" onclick="showResults('alpha3',null)">ALPHA3</div
+            ><div id="alpha4" class="radioButton domainRadioButton radioUnselected" onclick="showResults('alpha4',null)">ALPHA4</div
+            ><div id="englishdict" class="radioButton domainRadioButton radioUnselected" onclick="showResults('englishdict',null)">ENGLISHDICT</div
+            ><div id="girlnames" class="radioButton domainRadioButton radioUnselected" onclick="showResults('girlnames',null)">GIRLNAMES</div
+            ><div id="boynames" class="radioButton domainRadioButton radioUnselected" onclick="showResults('boynames',null)">BOYNAMES</div>
+        </div>
+        <div id="headerContainer">
+            <h2 id="extensionNamesLabel">Domain Extensions:</h2>
+        </div>
+        <div id="extensionNamesRadio" class="radioContainer">
+            <div id="com" class="radioButton extensionRadioButton radioSelected" onclick="showResults(null, 'com')">.com</div
+            ><div id="net" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'net')">.net</div
+            ><div id="us" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'us')">.us</div
+            ><div id="org" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'org')">.org</div
+            ><div id="io" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'io')">.io</div
+            ><div id="tv" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'tv')">.tv</div
+            ><div id="work" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null ,'work')">.work</div>
+        </div>
+        <div id="headerContainer">
+            <h2 class="twoHeaderLine">Free</h2><h2 class="twoHeaderLine">Taken</h2>
+        </div>
+        <div id="freeTakenContainer">
+            <div id="free" class="results">
+                <ol id="free_list">
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                </ol>
+            </div
+            ><div id="taken" class="results">
+                <ol id="taken_list">
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                    <li>Item1</li>
+                    <li>Item2</li>
+                    <li>Item3</li>
+                </ol>
             </div>
         </div>
-        <!-- <div class="dropdownGroup text-center">
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                    <button id="domainDropdown" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        ALPHA3
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="domainDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA1', null)">ALPHA1</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA2', null)">ALPHA2</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showResults('ALPHA3', null)">ALPHA3</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group" role="group">
-                    <button id="extensionDropdown" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        .com
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="extensionDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.com')">.com</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.net')">.net</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showResults(null,'.us')">.us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
-            <label>Domain:</label>
-            <div class="btn-group btn-dark" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="btnradio1">ALPHA1</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio2">ALPHA2</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio3">ALPHA3</label>
-            </div>
-        </div> -->
     </body>
     <script src="web/js/index.js"></script>
 </html>

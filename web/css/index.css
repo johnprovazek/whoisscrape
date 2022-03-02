@@ -1,48 +1,134 @@
 html{
+    font-family: Consolas;
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
 }
 
+body{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-bottom: 3em;
+    margin-top:0;
+}
+
+h1{
+    font-size: 3em;
+    margin-top: 0.416em;
+    margin-bottom: 0.416em;
+}
+
+h2{
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+p{
+    text-align: center;
+    width: min(56em,98vw);
+    margin:auto;
+    background-color: #F1F1F1;
+    border-radius: 0.2em;
+}
+
+.empty{
+    height: 3em;
+}
 
 .center{
     text-align: center;
 }
 
-.container {
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas: 
-        "free_header taken_header error_header"
-        "free taken error"; 
+.radioSelected {
+    color: white;
+    background-color: black;
+    border-radius: 0.2em;
 }
-.free_header { 
-    grid-area: free_header; 
+
+.radioUnselected {
+    color: black;
+    background-color: #C1C1C1;
+}
+
+.radioLabel{
     text-align: center;
-    background-color: red;
+    height: 3em;
+    line-height: 3em;
+    width: auto;
+    margin: 0;
+    padding: 0;
 }
-.taken_header { 
-    grid-area: taken_header; 
+
+.radioContainer {
+    width: 100%;
     text-align: center;
-    background-color: blue;
+    border-radius: 0.2em;
+    background-color: transparent;
 }
-.error_header { 
-    grid-area: error_header; 
+
+.radioButton {
+    height: 3em;
+    line-height: 3em;
+    width: 8em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.radioButton:first-child {
+    border-bottom-left-radius: 0.2em;
+    border-top-left-radius: 0.2em;
+}
+
+.radioButton:last-child {
+    border-bottom-right-radius: 0.2em;
+    border-top-right-radius: 0.2em;
+}
+
+#headerContainer {
+    width: min(56em,98vw);
+    height: 3em;
+    line-height: 3em;
     text-align: center;
-    background-color: green;
+    margin: auto;
 }
-.free { 
-    grid-area: free;
-    background-color: yellow; 
+
+.twoHeaderLine{
+    display: inline-block;
+    width: min(18.66em,49vw);
 }
-.taken { 
-    grid-area: taken;
-    background-color: pink; 
+
+#freeTakenContainer{
+    width: min(56em,98vw);
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    margin: auto;
 }
-.error { 
-    grid-area: error;
-    background-color: purple; 
+
+.results{
+    width: min(27.8em,48.6vw);
+    border-radius: 0.2em;
+    background-color: #F1F1F1;
+}
+
+#free{
+    float:left;
+}
+#taken{
+    float:right;
+}
+
+ol {
+    padding-left: 0;
+}
+
+li{
+    list-style-type: none;
+    height: 1.5em;
+    line-height: 1.5em;
 }

@@ -1,0 +1,310 @@
+{
+    "com": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    },
+    "net": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }, 
+    "us": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }, 
+    "org": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }, 
+    "io": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }, 
+    "tv": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }, 
+    "work": {
+        "ALPHA1": {
+            "Date": "2022_02_27_22_47_46", 
+            "Taken": ["a","z"], 
+            "Free": ["b","y"], 
+            "Error": []
+        }, 
+        "ALPHA2": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aa","zz"], 
+            "Free": ["bb","yy"], 
+            "Error": []
+        },
+        "ALPHA3": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaa","zzz"], 
+            "Free": ["bbb","yyy"], 
+            "Error": []
+        },
+        "ALPHA4": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["aaaa","zzzz"], 
+            "Free": ["bbbb","yyyy"], 
+            "Error": []
+        },
+        "ENGLISHDICT": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["apple","zebra"], 
+            "Free": ["jelly","kite"], 
+            "Error": []
+        },
+        "GIRLNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["abigail","zara"], 
+            "Free": ["jessica","rosa"], 
+            "Error": []
+        },
+        "BOYNAMES": {
+            "Date": "2022_02_27_22_57_19",
+            "Taken": ["albert","zorro"], 
+            "Free": ["john","peter"], 
+            "Error": []
+        }
+    }
+}
