@@ -10,14 +10,13 @@ window.onload = function(){
     setParagraphPadding()
     readTextFile("tester.json", function(text){
         json_data = JSON.parse(text);
-        console.log(json_data);
         fillTables(domain,extension)
     });
 }; 
 
 window.addEventListener('resize', function(event){
     toggleRadioButtonBackground()
-    setParagraphPadding()
+    setParagraphPadding() 
 });
 
 function showResults(domain_input, extension_input) {
@@ -49,7 +48,7 @@ function toggleRadioButtonBackground(){
         document.getElementById("domainNamesRadio").style.backgroundColor = "transparent";
     }
     else{
-        document.getElementById("domainNamesRadio").style.backgroundColor = "#C1C1C1";
+        document.getElementById("domainNamesRadio").style.backgroundColor = "#F1F1F1";
     }
     var start_element_domain = document.getElementById("com")
     var end_element_domain = document.getElementById("work")
@@ -57,7 +56,7 @@ function toggleRadioButtonBackground(){
         document.getElementById("extensionNamesRadio").style.backgroundColor = "transparent";
     }
     else{
-        document.getElementById("extensionNamesRadio").style.backgroundColor = "#C1C1C1";
+        document.getElementById("extensionNamesRadio").style.backgroundColor = "#F1F1F1";
     }
 }
 
@@ -87,14 +86,13 @@ function readTextFile(file, callback) {
 }
 
 function fillTables(domain,extension){
-    var taken_array = json_data[extension][domain.toUpperCase()]["Taken"]
-    var taken_list = document.getElementById("taken_list");
-    taken_list.innerHTML = "";
-    for (var i = 0; i < taken_array.length; i++) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(taken_array[i] + "." + extension));
-        taken_list.appendChild(li);
-    }
+    // var free_element = document.getElementById("free")
+    // var free_element_height = free_element.clientHeight
+    // free_element.style.height="0px";
+    // var taken_element = document.getElementById("taken")
+    // var taken_element_height = taken_element.clientHeight
+    // taken_element.style.height="0px";
+
     var free_array = json_data[extension][domain.toUpperCase()]["Free"]
     var free_list = document.getElementById("free_list");
     free_list.innerHTML = "";
@@ -103,4 +101,20 @@ function fillTables(domain,extension){
         li.appendChild(document.createTextNode(free_array[i] + "." + extension));
         free_list.appendChild(li);
     }
+    var taken_array = json_data[extension][domain.toUpperCase()]["Taken"]
+    var taken_list = document.getElementById("taken_list");
+    taken_list.innerHTML = "";
+    for (var i = 0; i < taken_array.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(taken_array[i] + "." + extension));
+        taken_list.appendChild(li);
+    }
+
+    // console.log(free_element_height + ":" + taken_element_height)
+    // if(free_element_height < taken_element_height){
+    //     free_element.style.height=taken_element_height + "px";
+    // }
+    // else{
+    //     taken_element.style.height=free_element_height + "px";;
+    // }
 }

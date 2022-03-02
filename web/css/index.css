@@ -9,8 +9,9 @@ html{
 body{
     margin-left: 1vw;
     margin-right: 1vw;
-    margin-bottom: 3em;
+    margin-bottom:0;
     margin-top:0;
+    color: #292f33;
 }
 
 h1{
@@ -20,13 +21,14 @@ h1{
 }
 
 h2{
-    font-size: 1.5em;
+    font-size: 1.5em; 
     margin-top: 0;
     margin-bottom: 0;
 }
 
 
 p{
+    font-size: 1em; 
     text-align: center;
     width: min(56em,98vw);
     margin:auto;
@@ -35,7 +37,7 @@ p{
 }
 
 .empty{
-    height: 3em;
+    height: 30em;
 }
 
 .center{
@@ -44,13 +46,13 @@ p{
 
 .radioSelected {
     color: white;
-    background-color: black;
+    background-color: #292f33;
     border-radius: 0.2em;
 }
 
 .radioUnselected {
-    color: black;
-    background-color: #C1C1C1;
+    color: #292f33;
+    background-color: #F1F1F1;
 }
 
 .radioLabel{
@@ -104,23 +106,26 @@ p{
 
 #freeTakenContainer{
     width: min(56em,98vw);
-    height: 3em;
-    line-height: 3em;
     text-align: center;
     margin: auto;
 }
 
 .results{
-    width: min(27.8em,48.6vw);
-    border-radius: 0.2em;
+    width: min(28em,49vw);
     background-color: #F1F1F1;
 }
 
 #free{
     float:left;
+    border-bottom-left-radius: 0.2em;
+    border-top-left-radius: 0.2em;
+    margin-bottom:3em;
 }
 #taken{
     float:right;
+    border-bottom-right-radius: 0.2em;
+    border-top-right-radius: 0.2em;
+    margin-bottom:3em;
 }
 
 ol {
