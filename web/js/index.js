@@ -12,11 +12,14 @@ window.onload = function(){
         json_data = JSON.parse(text);
         fillTables(domain,extension)
     });
+    tilesOnLoad()
 }; 
 
 window.addEventListener('resize', function(event){
     toggleRadioButtonBackground()
-    setParagraphPadding() 
+    setParagraphPadding()
+    setGradientVars()
+    tilesOnResize()
 });
 
 function showResults(domain_input, extension_input) {
@@ -101,4 +104,16 @@ function fillTables(domain,extension){
         li.appendChild(document.createTextNode(taken_array[i] + "." + extension));
         taken_list.appendChild(li);
     }
+}
+
+function setGradientVars(){
+    let root = document.documentElement
+    var window_width = window.innerWidth
+    var width = document.getElementById('info').offsetWidth
+    var offset = (window_width - width) / 2
+    var percent1 = (offset / window_width) * 100
+    var percent2 = ((offset + width) / window_width) * 100
+    console.log(percent1 + ":" + percent2)
+    root.style.setProperty('--var2', percent1 + "%")
+    root.style.setProperty('--var3', percent2 + "%")
 }
