@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script was used to generate a 5 letter words list in the pattern (Constant,Vowel,Constant,Vowel,Constant)
+# Script used to generate a 5 letter words list in the pattern (Constant,Vowel,Constant,Vowel,Constant)
 # Leaving here incase other Domain Name lists will be generated in the future
 
 for c1 in {b,c,d,f,g,h,j,k,l,m,n,p,q,r,s,t,v,w,x,y,z}
