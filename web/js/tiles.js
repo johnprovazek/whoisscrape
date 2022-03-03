@@ -27,8 +27,6 @@ function tilesOnLoad() {
     numSquares = 50
     canvas.width = screenWidth
     canvas.height = screenHeight
-
-
     // Create the flag variables (counter and total of images)
     var Counter = 0;
     var TotalImages = 2;
@@ -91,9 +89,21 @@ function tilesGetRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-// document.addEventListener('mousemove',function(e) {
-//     // var rect = e.target.getBoundingClientRect();
-//     // console.log(e.pageX + ":" + e.pageY)
-//     // X_CURSER = ((e.pageX - rect.left) - canvas.width/2)/(canvas.width/2);
-//     // Y_CURSER = (canvas.height/2 - (e.pageY - rect.top))/(canvas.height/2);
-// },true);
+// function tilesSetGradientVars(){
+//     let root = document.documentElement
+//     var window_width = window.innerWidth
+//     var content_width = document.getElementById('info').offsetWidth
+//     var content_width_extended = content_width+ (content_width * (2/7))
+//     var offset = (window_width - content_width_extended) / 2
+//     var percent1 = (offset / window_width) * 100
+//     var percent2 = ((offset + content_width_extended) / window_width) * 100
+//     root.style.setProperty('--var2', percent1 + "%")
+//     root.style.setProperty('--var3', percent2 + "%")
+// }
+
+document.addEventListener('mousemove',function(e) {
+    // var rect = e.target.getBoundingClientRect();
+    console.log(e.pageX + ":" + e.pageY)
+    // X_CURSER = ((e.pageX - rect.left) - canvas.width/2)/(canvas.width/2);
+    // Y_CURSER = (canvas.height/2 - (e.pageY - rect.top))/(canvas.height/2);
+},true);

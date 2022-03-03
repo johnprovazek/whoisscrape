@@ -18,13 +18,14 @@ body{
     margin:0;
 }
 
+
+
 #bodyContainer{
     margin-left: 1vw;
     margin-right: 1vw;
     margin-bottom:0;
     margin-top:0;
     height: 100vh;
-    background-image: linear-gradient(to right, rgba(255,0,0,0) var(--var1), rgba(255,255,255,1) var(--var2), rgba(255,255,255,1) var(--var3), rgba(255,0,0,0) var(--var4));
     /* background-color: green; */
     color: #292f33;
 }
