@@ -16,6 +16,7 @@ then
 fi
 
 # Checking if extension directories are setup
+echo "Creating directory structure if necessary"
 while read extension || [ -n "$extension" ]
 do
     if [ ! -d "../results/$extension" ] 
@@ -25,31 +26,34 @@ do
 
     if [ ! -d "../results/$extension/$domainnamefilenamenoextension" ] 
     then
-        
         mkdir "../results/$extension/$domainnamefilenamenoextension"
         mkdir "../results/$extension/$domainnamefilenamenoextension/domainerror"
         mkdir "../results/$extension/$domainnamefilenamenoextension/domainfree"
         mkdir "../results/$extension/$domainnamefilenamenoextension/domaintaken"
     fi
 
-    if [ ! -d "./responseparse/$extension" ] 
+    if [ ! -d "./responseparsescripts/$extension" ] 
     then
-        mkdir "./responseparse/$extension"
-        cp "./responseparse/freetaken.sh" "./responseparse/$extension/freetaken.sh"
-        cp "./responseparse/getdate.sh" "./responseparse/$extension/getdate.sh"
+        mkdir "./responseparsescripts/$extension"
+        cp "./responseparsescripts/freetaken.sh" "./responseparsescripts/$extension/freetaken.sh"
+        cp "./responseparsescripts/getdate.sh" "./responseparsescripts/$extension/getdate.sh"
         # These are used as a reference to adapt the freetaken.sh and getdate.sh scripts. 
-        whois A.$extension > "./responseparse/$extension/whoistaken.txt"
-        whois ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.$extension > "./responseparse/$extension/whoisfree.txt"
+        whois A.$extension > "./responseparsescripts/$extension/whoistaken.txt"
+        whois ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.$extension > "./responseparsescripts/$extension/whoisfree.txt"
     fi
 done < ../DomainExtensions/$domainextensionsfilename
-
-
-
 
 # Main loop running whois command
 whoiscounter=0
 TIME="$(date +%Y_%m_%d_%H_%M_%S)"
 truncate -s 0 fulllisttemp.txt
+
+if [ "$3" == "parallel" ]
+then
+    echo "Creating file with combination of all domains and extensions"
+else
+    echo "Running whois command loop:"
+fi
 
 while read extension || [ -n "$extension" ]
 do
@@ -62,14 +66,14 @@ do
         else
             whoiscounter=$((whoiscounter+1))
             whois $domain.$extension > whoistemp.txt
-            DATA=$(cat whoistemp.txt | ./responseparse/$extension/freetaken.sh)
+            DATA=$(cat whoistemp.txt | ./responseparsescripts/$extension/freetaken.sh)
             echo $whoiscounter: $domain.$extension
             if [ "$DATA" == "free" ]
             then
                 echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt
             elif [ "$DATA" == "taken" ]
             then
-                DATE=$(cat whoistemp.txt | ./responseparse/$extension/getdate.sh)
+                DATE=$(cat whoistemp.txt | ./responseparsescripts/$extension/getdate.sh)
                 echo $domain $DATE >> ../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt
             else
                 echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt
@@ -80,5 +84,33 @@ done < ../DomainExtensions/$domainextensionsfilename
 
 if [ "$3" == "parallel" ]
 then
-    cat fulllisttemp.txt | parallel ./helperscripts/whoisparallel.sh {} $domainnamefilenamenoextension $TIME
+    echo "Running whois command loop:"
+    cat fulllisttemp.txt | parallel  ./helperscripts/whoisparallel.sh {} $domainnamefilenamenoextension $TIME
+    echo "Sorting output files"
+    while read extension || [ -n "$extension" ]
+    do
+        TAKENFILE="../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt"
+        if [ -f $TAKENFILE ] 
+        then
+            sort $TAKENFILE -o $TAKENFILE
+        fi
+
+        FREEFILE="../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt"
+        if [ -f $FREEFILE ] 
+        then
+            sort $FREEFILE  -o $FREEFILE 
+        fi
+
+        ERRORFILE="../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt"
+        if [ -f $ERRORFILE ] 
+        then
+            sort $ERRORFILE  -o $ERRORFILE 
+        fi
+    done < ../DomainExtensions/$domainextensionsfilename
+fi
+
+echo "Deleting temp files"
+if [ "$3" == "parallel" ]
+then
+    rm fulllisttemp.txt
 fi
