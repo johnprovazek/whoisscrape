@@ -46,44 +46,18 @@ done < ../DomainExtensions/$domainextensionsfilename
 # Main loop running whois command
 whoiscounter=0
 TIME="$(date +%Y_%m_%d_%H_%M_%S)"
-truncate -s 0 fulllisttemp.txt
 
 if [ "$3" == "parallel" ]
 then
-    echo "Creating file with combination of all domains and extensions"
-else
-    echo "Running whois command loop:"
-fi
-
-while read extension || [ -n "$extension" ]
-do
-    while read domain || [ -n "$domain" ]
+    truncate -s 0 fulllisttemp.txt
+    while read extension || [ -n "$extension" ]
     do
-        if [ "$3" == "parallel" ]
-        then
+        while read domain || [ -n "$domain" ]
+        do
             whoiscounter=$((whoiscounter+1))
-            echo $whoiscounter $domain.$extension >> fulllisttemp.txt
-        else
-            whoiscounter=$((whoiscounter+1))
-            whois $domain.$extension > whoistemp.txt
-            DATA=$(cat whoistemp.txt | ./responseparsescripts/$extension/freetaken.sh)
-            echo $whoiscounter: $domain.$extension
-            if [ "$DATA" == "free" ]
-            then
-                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt
-            elif [ "$DATA" == "taken" ]
-            then
-                DATE=$(cat whoistemp.txt | ./responseparsescripts/$extension/getdate.sh)
-                echo $domain $DATE >> ../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt
-            else
-                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt
-            fi
-        fi
-    done < ../DomainNames/$domainnamefilename
-done < ../DomainExtensions/$domainextensionsfilename
-
-if [ "$3" == "parallel" ]
-then
+            echo $whoiscounter $domain.$extension
+        done < ../DomainNames/$domainnamefilename
+    done < ../DomainExtensions/$domainextensionsfilename  >> fulllisttemp.txt
     echo "Running whois command loop:"
     cat fulllisttemp.txt | parallel  ./helperscripts/whoisparallel.sh {} $domainnamefilenamenoextension $TIME
     echo "Sorting output files"
@@ -107,10 +81,32 @@ then
             sort $ERRORFILE  -o $ERRORFILE 
         fi
     done < ../DomainExtensions/$domainextensionsfilename
-fi
-
-echo "Deleting temp files"
-if [ "$3" == "parallel" ]
-then
+    echo "Deleting temp file"
     rm fulllisttemp.txt
+    echo "Done"
+else
+    echo "Running whois command loop:"
+    while read extension || [ -n "$extension" ]
+    do
+        while read domain || [ -n "$domain" ]
+        do
+            whoiscounter=$((whoiscounter+1))
+            whois $domain.$extension > whoistemp.txt
+            DATA=$(cat whoistemp.txt | ./responseparsescripts/$extension/freetaken.sh)
+            echo $whoiscounter: $domain.$extension
+            if [ "$DATA" == "free" ]
+            then
+                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt
+            elif [ "$DATA" == "taken" ]
+            then
+                DATE=$(cat whoistemp.txt | ./responseparsescripts/$extension/getdate.sh)
+                echo $domain $DATE >> ../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt
+            else
+                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt
+            fi
+        done < ../DomainNames/$domainnamefilename
+    done < ../DomainExtensions/$domainextensionsfilename
+    echo "Deleting temp file"
+    rm whoistemp.txt
+    echo "Done"
 fi

@@ -1,18 +1,13 @@
-var domain
-var extension
 var font_size
 var json_data
 window.onload = function(){
-    domain = "alpha3"
-    extension = "com"
     font_size = getComputedStyle(document.body).getPropertyValue('font-size')
     toggleRadioButtonBackground()
     setParagraphPadding()
-    readTextFile("tester.json", function(text){
+    readTextFile("results.json", function(text){
         json_data = JSON.parse(text);
-        fillTables(domain,extension)
+        initRadioResults()
     });
-    // tilesOnLoad()
 }; 
 
 window.addEventListener('resize', function(event){
@@ -21,40 +16,74 @@ window.addEventListener('resize', function(event){
     // tilesOnResize()
 });
 
+function initRadioResults(){
+    setCookie(null,null)
+    var domain_cookie = getCookie("domain")
+    var extension_cookie = getCookie("extension")
+    toggleRadioClasses(domain_cookie, extension_cookie)
+    fillTables(domain_cookie,extension_cookie)
+}
+
 function showResults(domain_input, extension_input) {
-    if(domain_input != null){
-        domain = domain_input
-        var old_button = document.getElementsByClassName('domainRadioButton radioSelected')[0]
-        old_button.classList.remove("radioSelected")
-        old_button.classList.add("radioUnselected")
-        var new_button = document.getElementById(domain_input)
-        new_button.classList.remove("radioUnselected")
-        new_button .classList.add("radioSelected")
+    setCookie(domain_input,extension_input)
+    var domain_cookie = getCookie("domain")
+    var extension_cookie = getCookie("extension")
+    toggleRadioClasses(domain_cookie, extension_cookie)
+    fillTables(domain_cookie, extension_cookie)
+}
+
+function toggleRadioClasses(domain_input, extension_input){
+    var domain_elements = document.getElementsByClassName("domainRadioButton")
+    for (var i = 0; i < domain_elements.length; i++) {
+        domain_elements[i].classList.remove("radioSelected")
+        domain_elements[i].classList.add("radioUnselected")
     }
-    if(extension_input != null){
-        extension = extension_input
-        var old_button = document.getElementsByClassName('extensionRadioButton radioSelected')[0]
-        old_button.classList.remove("radioSelected")
-        old_button.classList.add("radioUnselected")
-        var new_button = document.getElementById(extension_input)
-        new_button.classList.remove("radioUnselected")
-        new_button .classList.add("radioSelected")
+    document.getElementById(domain_input).classList.add("radioSelected")
+    document.getElementById(domain_input).classList.remove("radioUnselected")
+
+    var extension_elements = document.getElementsByClassName("extensionRadioButton")
+    for (var i = 0; i < extension_elements.length; i++) {
+        extension_elements[i].classList.remove("radioSelected")
+        extension_elements[i].classList.add("radioUnselected")
     }
-    fillTables(domain,extension)
+    document.getElementById(extension_input).classList.add("radioSelected")
+    document.getElementById(extension_input).classList.remove("radioUnselected")
+}
+
+function fillTables(domain_input,extension_input){
+    console.log(domain_input)
+    console.log(extension_input)
+    console.log(json_data[extension_input][domain_input])
+    var free_array = json_data[extension_input][domain_input]["free"]
+    var free_list = document.getElementById("freeList");
+    free_list.innerHTML = "";
+    for (var i = 0; i < free_array.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(free_array[i] + "." + extension_input));
+        free_list.appendChild(li);
+    }
+    var taken_array = json_data[extension_input][domain_input]["taken"]
+    var taken_list = document.getElementById("takenList");
+    taken_list.innerHTML = "";
+    for (var i = 0; i < taken_array.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(taken_array[i] + "." + extension_input));
+        taken_list.appendChild(li);
+    }
 }
 
 function toggleRadioButtonBackground(){
-    var start_element_domain = document.getElementById("alpha1")
-    var end_element_domain = document.getElementById("boynames")
+    var start_element_domain = document.getElementById("domainNamesRadio").firstElementChild
+    var end_element_domain = document.getElementById("domainNamesRadio").lastElementChild
     if(start_element_domain.offsetTop == end_element_domain.offsetTop){
         document.getElementById("domainNamesRadio").style.backgroundColor = "transparent";
     }
     else{
         document.getElementById("domainNamesRadio").style.backgroundColor = "#F1F1F1";
     }
-    var start_element_domain = document.getElementById("com")
-    var end_element_domain = document.getElementById("work")
-    if(start_element_domain.offsetTop == end_element_domain.offsetTop){
+    var start_element_extension = document.getElementById("extensionNamesRadio").firstElementChild
+    var end_element_extension = document.getElementById("extensionNamesRadio").lastElementChild
+    if(start_element_extension.offsetTop == end_element_extension.offsetTop){
         document.getElementById("extensionNamesRadio").style.backgroundColor = "transparent";
     }
     else{
@@ -63,7 +92,7 @@ function toggleRadioButtonBackground(){
 }
 
 function setParagraphPadding(){
-    var element = document.getElementById("info")
+    var element = document.getElementById("preamble")
     var container = document.getElementById("paragraphContainer")
     var computedStyle = getComputedStyle(element);
     var paragraph_height = element.clientHeight;  // height with padding    
@@ -86,21 +115,37 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
-function fillTables(domain,extension){
-    var free_array = json_data[extension][domain.toUpperCase()]["Free"]
-    var free_list = document.getElementById("freeList");
-    free_list.innerHTML = "";
-    for (var i = 0; i < free_array.length; i++) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(free_array[i] + "." + extension));
-        free_list.appendChild(li);
+
+function setCookie(domain,extension) {
+    var domain_cookie = getCookie("domain");
+    var extension_cookie = getCookie("extension");
+    // console.log(domain_cookie)
+    // console.log(extension_cookie)
+    if (domain_cookie == "") {
+        document.cookie = "domain=alpha1;"
     }
-    var taken_array = json_data[extension][domain.toUpperCase()]["Taken"]
-    var taken_list = document.getElementById("takenList");
-    taken_list.innerHTML = "";
-    for (var i = 0; i < taken_array.length; i++) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(taken_array[i] + "." + extension));
-        taken_list.appendChild(li);
+    else if(domain != null) {
+        document.cookie = "domain=" + domain + ";"
+    } 
+    if (extension_cookie == "") {
+        document.cookie = "extension=com;"
     }
+    else if(extension != null) {
+        document.cookie = "extension=" + extension + ";"
+    }
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }

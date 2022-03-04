@@ -73,10 +73,17 @@ li{
 .radioButton {
     height: 3em;
     line-height: 3em;
-    width: 8em;
     display: inline-block;
     vertical-align: middle;
     margin: 0 auto;
+}
+
+.domainRadioButton{
+    width: 9.33333em;
+}
+
+.extensionRadioButton{
+    width: 18.66666em;
 }
 
 .radioButton:first-child {
@@ -147,7 +154,7 @@ li{
     border-radius: 0.2em;
 }
 
-#info{
+#preamble{
     margin:0
     /* text-align: center; */
     /* vertical-align: middle; */
