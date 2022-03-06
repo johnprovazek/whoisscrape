@@ -4,12 +4,13 @@
         <meta charset="utf-8" />
         <title>whoisscrape</title>
         <link rel="icon" type="image/x-icon" href="web/img/favicon.ico">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="web/css/index.css">
-        <!-- <link rel="stylesheet" href="web/css/tiles.css"> -->
+        <link rel="stylesheet" href="web/css/tiles.css">
     </head>
     <body>
-        <!-- <div id="tilesCover"></div> -->
-        <!-- <canvas id="tiles"></canvas> -->
+        <div id="tilesCover"></div>
+        <canvas id="tiles"></canvas>
         <div id="bodyContainer">
             <div id="header1Container">
                 <h1 id="mainHeader"> whoisscrape</h1>
@@ -37,7 +38,7 @@
                 ><div id="io" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'io')">.io</div>
             </div>
             <div id="header2Container">
-                <h2 class="splitHeader">Free</h2><h2 class="splitHeader">Taken</h2>
+                <h2 class="splitHeader">Free <i class="fa fa-clone" aria-hidden="true"></i></h2><h2 class="splitHeader">Taken <i class="fa fa-clone" aria-hidden="true"></i></h2>
             </div>
             <div id="freeTakenContainer">
                 <div id="freeTakenBackgroundContainer">
@@ -51,8 +52,10 @@
                     </div>
                 </div>
             </div>
+            <div id="speedyHiddenListContainer">
+            </div>
         </div>
     </body>
     <script src="web/js/index.js"></script>
-    <!-- <script src="web/js/tiles.js"></script> -->
+    <script src="web/js/tiles.js"></script>
 </html>

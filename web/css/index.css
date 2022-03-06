@@ -5,6 +5,7 @@
     --var4: 100%;
 }
 
+/* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"); */
 
 html{
     font-family: Consolas;
@@ -43,6 +44,10 @@ h2{
 }
 
 ol {
+    -webkit-user-select: text; /* Safari */        
+    -moz-user-select: text; /* Firefox */
+    -ms-user-select: text; /* IE10+/Edge */
+    user-select: text; /* Standard */
     padding-left: 0;
 }
 
@@ -158,4 +163,10 @@ li{
     margin:0
     /* text-align: center; */
     /* vertical-align: middle; */
+}
+
+#speedyHiddenListContainer{
+    visibility:hidden;
+    height:0;
+    width:0;
 }

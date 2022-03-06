@@ -7,12 +7,15 @@ window.onload = function(){
     readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
         initRadioResults()
+        // createListElements()
     });
+    tilesOnLoad()
 }; 
 
 window.addEventListener('resize', function(event){
     toggleRadioButtonBackground()
     setParagraphPadding()
+    tilesOnResize()
 });
 
 function initRadioResults(){
@@ -140,4 +143,24 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function createListElements(){
+    var domain_elements = document.getElementsByClassName("domainRadioButton")
+    var extension_elements = document.getElementsByClassName("extensionRadioButton")
+    for (var i = 0; i < domain_elements.length; i++) {
+        for (var j = 0; j < extension_elements.length; j++) {
+            var do_id = domain_elements[i].id
+            var ex_id = extension_elements[j].id
+            var free_array = json_data[ex_id][do_id]["free"]
+            freeList = document.createElement('ul')
+            freeList.id = do_id + "_" + ex_id
+            for (var k = 0; k < free_array.length; k++) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(free_array[k] + "." + ex_id));
+                freeList.appendChild(li);
+            }
+            document.getElementById("speedyHiddenListContainer").appendChild(freeList);
+        }
+    }
 }

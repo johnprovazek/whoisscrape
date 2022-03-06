@@ -6,31 +6,41 @@ var width_tiles;
 var height_tiles;
 var imgArray = new Array();
 var imgGridArray;
+var cur_mouse_box_x;
+var cur_mouse_box_y;
 
 function tilesOnResize() {
     var canvas = document.getElementById("tiles");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
     var context = canvas.getContext("2d");
+    var scaledWidth = Math.round(window.innerWidth * window.devicePixelRatio)
+    var scaledHeight = Math.round(window.innerHeight * window.devicePixelRatio)
+    canvas.width = scaledWidth
+    canvas.height = scaledHeight
     for (var i = 0; i < width_tiles; i++) {
         for (var j = 0; j < height_tiles; j++) {
             context.drawImage(imgArray[imgGridArray[i][j]], i*tile_distance, j*tile_distance, tile_distance, tile_distance);
         }
     }
+    tilesSetGradientVars()
 }
 
 function tilesOnLoad() {
     var canvas = document.getElementById("tiles");
     var context = canvas.getContext("2d");
+    cur_mouse_box_x = 20000;
+    cur_mouse_box_y = 20000;
     screenHeight = window.screen.height
     screenWidth = window.screen.width
     numSquares = 50
+    tile_distance = Math.ceil(screenWidth/numSquares)
     canvas.width = screenWidth
     canvas.height = screenHeight
     var Counter = 0;
-    var TotalImages = 2;
+    var TotalImages = 4;
     imgArray[0] = new Image();
     imgArray[1] = new Image();
+    imgArray[2] = new Image();
+    imgArray[3] = new Image();
     var notLoadedImages = [];
     var onloadCallback = function(){
         Counter++;
@@ -48,7 +58,6 @@ function tilesOnLoad() {
         allLoadedCallback();
     };
     var allLoadedCallback = function(){
-        tile_distance = screenWidth/numSquares
         width_tiles = Math.ceil(numSquares + 1);
         height_tiles = Math.ceil(screenHeight/tile_distance + 1);
         imgGridArray = new Array(width_tiles);
@@ -63,10 +72,16 @@ function tilesOnLoad() {
     };
     imgArray[0].onload = onloadCallback;
     imgArray[1].onload = onloadCallback;
+    imgArray[2].onload = onloadCallback;
+    imgArray[3].onload = onloadCallback;
     imgArray[0].onerror = onerrorCallback;
     imgArray[1].onerror = onerrorCallback;
+    imgArray[2].onerror = onerrorCallback;
+    imgArray[3].onerror = onerrorCallback;
     imgArray[0].src = "web/img/a.svg";
     imgArray[1].src = "web/img/b.svg";
+    imgArray[2].src = "web/img/c.svg";
+    imgArray[3].src = "web/img/d.svg";
 }
 
 function tilesGetRandomInt(max) {
@@ -76,7 +91,7 @@ function tilesGetRandomInt(max) {
 function tilesSetGradientVars(){
     let root = document.documentElement
     var window_width = window.innerWidth
-    var content_width = document.getElementById('info').offsetWidth
+    var content_width = document.getElementById('preamble').offsetWidth
     var content_width_extended = content_width+ (content_width * (2/7))
     var offset = (window_width - content_width_extended) / 2
     var percent1 = (offset / window_width) * 100
@@ -86,8 +101,22 @@ function tilesSetGradientVars(){
 }
 
 document.addEventListener('mousemove',function(e) {
-    // var rect = e.target.getBoundingClientRect();
-    console.log(e.pageX + ":" + e.pageY)
-    // X_CURSER = ((e.pageX - rect.left) - canvas.width/2)/(canvas.width/2);
-    // Y_CURSER = (canvas.height/2 - (e.pageY - rect.top))/(canvas.height/2);
+    var canvas = document.getElementById("tiles");
+    var context = canvas.getContext("2d");
+    var x = Math.floor(((e.pageX * window.devicePixelRatio) / screenWidth) * numSquares)
+    var y = Math.floor(((e.pageY * window.devicePixelRatio) / screenWidth) * numSquares)
+    if(x != cur_mouse_box_x || y != cur_mouse_box_y){
+        if(imgGridArray[x][y] == 1)
+        {
+            imgGridArray[x][y] = 0
+        }
+        else if(imgGridArray[x][y] == 0)
+        {
+            imgGridArray[x][y] = 1
+        }
+        context.clearRect(x*tile_distance, y*tile_distance, tile_distance, tile_distance);
+        context.drawImage(imgArray[imgGridArray[x][y]], x*tile_distance, y*tile_distance, tile_distance, tile_distance)
+        cur_mouse_box_x = x;
+        cur_mouse_box_y = y;
+    }
 },true);
