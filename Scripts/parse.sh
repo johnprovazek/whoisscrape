@@ -1,13 +1,87 @@
 #!/bin/bash
-# $1 - Name of file containing wordlist of domain names. Do not include path. Should be under "domainnames" Directory.
-# $2 - Name of file containing wordlist of domain extensions. Do not include path. Should be under "domainextensions" Directory.
-# $3 - If the thrid argument is "parallel" the script will be run in parallel.
-# Example "./parse.sh SAMPLENAMES.txt SAMPLEEXTENSIONS.txt parallel"
+# -d flag : Name of the wordlist file containing list of domain names. First will look under the "domainnames" directory, next will look at full path.
+# -e flag : Name of the wordlist file containing list of domain extensions. First will look under the "domainextensions" directory, next will look at full path.
+# -p flag : Set this to "true" if you would like to run in parallel. Set to "false" or don't include the flag to run serially.
+# -j flag : Set this to "true" if you would like to gather the latest results and format them into a JSON file. Set to "false" or don't include the flag to skip this.
+# Example run: "./parse.sh -d samplenames.txt -e sampleextensions.txt -p true -j true"
 
-# Setting variables
-domainnamefilename=$1
-domainextensionsfilename=$2
-domainnamefilenamenoextension=${domainnamefilename::-4}
+# Parsing in command line input
+while getopts d:e:p:j: flag
+do
+    case "${flag}" in
+        d) domainfileinput=${OPTARG};;
+        e) extensionfileinput=${OPTARG};;
+        p) parallelinput=${OPTARG};;
+        j) jsoninput=${OPTARG};;
+    esac
+done
+
+# Handling errors in command line input
+inputerror=false
+if [ "$domainfileinput" == "" ]
+then
+    echo "-d flag wasn't provided. parse.sh needs a domain names wordlist input file"
+    inputerror=true
+elif [ ! -f ../domainnames/$domainfileinput ] && [ ! -f $domainfileinput ]
+then
+    echo "-d flag was provided with an invalid file"
+    inputerror=true
+fi
+if [ "$extensionfileinput" == "" ]
+then
+    echo "-e flag wasn't provided. parse.sh parse.sh needs a domain extensions wordlist input file"
+    inputerror=true
+elif [ ! -f ../domainextensions/$extensionfileinput ] && [ ! -f $extensionfileinput ]
+then
+    echo "-e flag was provided an invalid file"
+    inputerror=true
+fi
+if [ "$parallelinput" == "" ]
+then
+    parallelinput=false
+elif [ $parallelinput != "true" ] && [ $parallelinput != "false" ]
+then
+    echo "-p flag input should be either \"true\" or \"false\""
+    inputerror=true
+elif [ $parallelinput == "true" ]
+then
+    parallelinput=true
+elif [ $parallelinput == "false" ]
+then
+    parallelinput=false
+fi
+if [ "$jsoninput" == "" ]
+then
+    jsoninput=false
+elif [ $jsoninput != "true" ] && [ $jsoninput != "false" ]
+then
+    echo "-j flag input should be either \"true\" or \"false\""
+    inputerror=true
+elif [ $jsoninput == "true" ]
+then
+    jsoninput=true
+elif [ $jsoninput == "false" ]
+then
+    jsoninput=false
+fi
+if $inputerror
+then
+    exit
+fi
+
+# Setting the correct paths for domain and extension wordlist files
+if [ -f ../domainnames/$domainfileinput ]
+then
+    domainfileinput="../domainnames/$domainfileinput"
+fi
+if [ -f ../domainextensions/$extensionfileinput ]
+then
+    extensionfileinput="../domainextensions/$extensionfileinput"
+fi
+
+# Removing path and extensions from domain wordlist input
+removedpath=${domainfileinput##*/}
+domainwordlist=${removedpath%%.*}
 
 # Checking if Result directory is setup
 if [ ! -d "../results" ] 
@@ -24,12 +98,12 @@ do
         mkdir "../results/$extension"
     fi
 
-    if [ ! -d "../results/$extension/$domainnamefilenamenoextension" ] 
+    if [ ! -d "../results/$extension/$domainwordlist" ] 
     then
-        mkdir "../results/$extension/$domainnamefilenamenoextension"
-        mkdir "../results/$extension/$domainnamefilenamenoextension/domainerror"
-        mkdir "../results/$extension/$domainnamefilenamenoextension/domainfree"
-        mkdir "../results/$extension/$domainnamefilenamenoextension/domaintaken"
+        mkdir "../results/$extension/$domainwordlist"
+        mkdir "../results/$extension/$domainwordlist/domainerror"
+        mkdir "../results/$extension/$domainwordlist/domainfree"
+        mkdir "../results/$extension/$domainwordlist/domaintaken"
     fi
 
     if [ ! -d "./responseparsescripts/$extension" ] 
@@ -41,13 +115,13 @@ do
         whois A.$extension > "./responseparsescripts/$extension/whoistaken.txt"
         whois ASDFKASDKFAKJSLDFKASDJFAKSLDJFKNENSDFASDFASD.$extension > "./responseparsescripts/$extension/whoisfree.txt"
     fi
-done < ../DomainExtensions/$domainextensionsfilename
+done < $extensionfileinput
 
 # Main loop running whois command
 whoiscounter=0
 TIME="$(date +%Y_%m_%d_%H_%M_%S)"
 
-if [ "$3" == "parallel" ]
+if $parallelinput
 then
     truncate -s 0 fulllisttemp.txt
     while read extension || [ -n "$extension" ]
@@ -56,34 +130,33 @@ then
         do
             whoiscounter=$((whoiscounter+1))
             echo $whoiscounter $domain.$extension
-        done < ../DomainNames/$domainnamefilename
-    done < ../DomainExtensions/$domainextensionsfilename  >> fulllisttemp.txt
+        done < $domainfileinput
+    done < $extensionfileinput  >> fulllisttemp.txt
     echo "Running whois command loop:"
-    cat fulllisttemp.txt | parallel  ./helperscripts/whoisparallel.sh {} $domainnamefilenamenoextension $TIME
+    cat fulllisttemp.txt | parallel  ./helperscripts/whoisparallel.sh {} $domainwordlist $TIME
     echo "Sorting output files"
     while read extension || [ -n "$extension" ]
     do
-        TAKENFILE="../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt"
+        TAKENFILE="../results/$extension/$domainwordlist/domaintaken/taken$TIME.txt"
         if [ -f $TAKENFILE ] 
         then
             sort $TAKENFILE -o $TAKENFILE
         fi
 
-        FREEFILE="../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt"
+        FREEFILE="../results/$extension/$domainwordlist/domainfree/free$TIME.txt"
         if [ -f $FREEFILE ] 
         then
             sort $FREEFILE  -o $FREEFILE 
         fi
 
-        ERRORFILE="../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt"
+        ERRORFILE="../results/$extension/$domainwordlist/domainerror/error$TIME.txt"
         if [ -f $ERRORFILE ] 
         then
             sort $ERRORFILE  -o $ERRORFILE 
         fi
-    done < ../DomainExtensions/$domainextensionsfilename
+    done < $extensionfileinput
     echo "Deleting temp file"
     rm fulllisttemp.txt
-    echo "Done"
 else
     echo "Running whois command loop:"
     while read extension || [ -n "$extension" ]
@@ -96,17 +169,22 @@ else
             echo $whoiscounter: $domain.$extension
             if [ "$DATA" == "free" ]
             then
-                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainfree/free$TIME.txt
+                echo $domain >> ../results/$extension/$domainwordlist/domainfree/free$TIME.txt
             elif [ "$DATA" == "taken" ]
             then
                 DATE=$(cat whoistemp.txt | ./responseparsescripts/$extension/getdate.sh)
-                echo $domain $DATE >> ../results/$extension/$domainnamefilenamenoextension/domaintaken/taken$TIME.txt
+                echo $domain $DATE >> ../results/$extension/$domainwordlist/domaintaken/taken$TIME.txt
             else
-                echo $domain >> ../results/$extension/$domainnamefilenamenoextension/domainerror/error$TIME.txt
+                echo $domain >> ../results/$extension/$domainwordlist/domainerror/error$TIME.txt
             fi
-        done < ../DomainNames/$domainnamefilename
-    done < ../DomainExtensions/$domainextensionsfilename
+        done < $domainfileinput
+    done < $extensionfileinput
     echo "Deleting temp file"
     rm whoistemp.txt
-    echo "Done"
+fi
+
+if $jsoninput
+then
+    echo "Formatting latest results into a JSON file"
+    python ./helperscripts/json_convert.py
 fi

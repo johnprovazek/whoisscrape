@@ -4,7 +4,7 @@ window.onload = function(){
     font_size = getComputedStyle(document.body).getPropertyValue('font-size')
     toggleRadioButtonBackground()
     setParagraphPadding()
-    readTextFile("results.json", function(text){
+    readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
         initRadioResults()
     });
@@ -13,7 +13,6 @@ window.onload = function(){
 window.addEventListener('resize', function(event){
     toggleRadioButtonBackground()
     setParagraphPadding()
-    // tilesOnResize()
 });
 
 function initRadioResults(){
@@ -40,7 +39,6 @@ function toggleRadioClasses(domain_input, extension_input){
     }
     document.getElementById(domain_input).classList.add("radioSelected")
     document.getElementById(domain_input).classList.remove("radioUnselected")
-
     var extension_elements = document.getElementsByClassName("extensionRadioButton")
     for (var i = 0; i < extension_elements.length; i++) {
         extension_elements[i].classList.remove("radioSelected")
@@ -51,9 +49,6 @@ function toggleRadioClasses(domain_input, extension_input){
 }
 
 function fillTables(domain_input,extension_input){
-    console.log(domain_input)
-    console.log(extension_input)
-    console.log(json_data[extension_input][domain_input])
     var free_array = json_data[extension_input][domain_input]["free"]
     var free_list = document.getElementById("freeList");
     free_list.innerHTML = "";
@@ -115,12 +110,9 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
-
 function setCookie(domain,extension) {
     var domain_cookie = getCookie("domain");
     var extension_cookie = getCookie("extension");
-    // console.log(domain_cookie)
-    // console.log(extension_cookie)
     if (domain_cookie == "") {
         document.cookie = "domain=alpha1;"
     }
