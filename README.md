@@ -4,7 +4,7 @@
 
 This project was initially created with the intention to find the smallest possible domain name that I could purchase. This project is mostly written using Bash scripts. They work by running the *whois* command on a loop with an input of a domain name wordlist and domain extension wordlist. This project is helpful if you would like to quickly query the avaliablity of a specific list of domain names and domain extensions. To see select results from this script you can view them at [johnprovazek.com/whoisscrape](https://www.johnprovazek.com/whoisscrape/).
 
-Main whois loop is built using Bash scripts. A Python script is used to format the data into a JSON file. Website is developed using vanilla JavaScript.
+Built using Bash scripts. A Python script for formatting data into JSON format. Project site is developed using vanilla JavaScript.
 
 ## Installation
 
