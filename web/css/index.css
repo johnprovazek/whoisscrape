@@ -81,6 +81,7 @@ li{
     display: inline-block;
     vertical-align: middle;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .domainRadioButton{
@@ -101,7 +102,7 @@ li{
     border-top-right-radius: 0.2em;
 }
 
-#header1Container {
+.header1Container {
     width: min(56em,100%);
     height: 6em;
     line-height: 6em;
@@ -109,7 +110,7 @@ li{
     margin: auto;
 }
 
-#header2Container {
+.header2Container {
     width: min(56em,100%);
     height: 3em;
     line-height: 3em;
@@ -133,7 +134,7 @@ li{
     margin: 0;
     border-radius: 0.2em;
     background-color: #F1F1F1;
-    margin-bottom: 3em;
+    /* margin-bottom: 3em;+ */
 }
 
 .freeTakenListContainer{
@@ -165,8 +166,14 @@ li{
     /* vertical-align: middle; */
 }
 
-#speedyHiddenListContainer{
-    visibility:hidden;
-    height:0;
-    width:0;
+.download{
+    color: #292f33;
+}
+
+#pageToggleContainer{
+    /* visibility: hidden; */
+    /* width: min(56em,100%); */
+    /* height: 3em; */
+    /* width:0;
+    height:0; */
 }

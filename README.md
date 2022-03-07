@@ -61,10 +61,6 @@ The results will be stored in the [results](./results) directory.
 
 ## Bugs & Improvements
 - Add logic to handle extensions that impose a quota
-- On website fix slow loading for large results, specifically ENGLISHDICT is slow.
-- On website include a copy option to copy results
-- On website include a date feature on hover over a domain
-- On website include the date data was last scraped
 
 ## License
 

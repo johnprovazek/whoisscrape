@@ -100,11 +100,22 @@ function tilesSetGradientVars(){
     root.style.setProperty('--var3', percent2 + "%")
 }
 
-document.addEventListener('mousemove',function(e) {
+document.body.addEventListener('mousemove',function(e) {
     var canvas = document.getElementById("tiles");
     var context = canvas.getContext("2d");
-    var x = Math.floor(((e.pageX * window.devicePixelRatio) / screenWidth) * numSquares)
-    var y = Math.floor(((e.pageY * window.devicePixelRatio) / screenWidth) * numSquares)
+    var scrollbar_adjustment = (window.innerWidth * window.devicePixelRatio) / (document.body.clientWidth * window.devicePixelRatio)
+    var first_x = (e.clientX * window.devicePixelRatio) * scrollbar_adjustment
+    var first_y = (e.clientY * window.devicePixelRatio)
+    // context.fillStyle = 'yellow';
+    // context.fillRect(first_x,first_y,1,1);
+
+
+    // Need to investigate why this works
+    var x = Math.floor(first_x / tile_distance)
+    var y = Math.floor(first_y / tile_distance)
+
+    // var x = Math.floor(((e.clientX * window.devicePixelRatio) / screenWidth) * numSquares)
+    // var y = Math.floor(((e.clientY * window.devicePixelRatio) / screenWidth) * numSquares)
     if(x != cur_mouse_box_x || y != cur_mouse_box_y){
         if(imgGridArray[x][y] == 1)
         {

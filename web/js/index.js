@@ -7,9 +7,9 @@ window.onload = function(){
     readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
         initRadioResults()
-        // createListElements()
     });
     tilesOnLoad()
+    // navigator.clipboard.writeText("sup fucker")
 }; 
 
 window.addEventListener('resize', function(event){
@@ -23,7 +23,10 @@ function initRadioResults(){
     var domain_cookie = getCookie("domain")
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
-    fillTables(domain_cookie,extension_cookie)
+    setDateHeader(domain_cookie,extension_cookie)
+    setDownloadLinks(domain_cookie,extension_cookie)
+    fillTables(domain_cookie,extension_cookie,1)
+    pageToggle(1)
 }
 
 function showResults(domain_input, extension_input) {
@@ -31,7 +34,10 @@ function showResults(domain_input, extension_input) {
     var domain_cookie = getCookie("domain")
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
-    fillTables(domain_cookie, extension_cookie)
+    setDateHeader(domain_cookie,extension_cookie)
+    setDownloadLinks(domain_cookie,extension_cookie)
+    fillTables(domain_cookie, extension_cookie,1)
+    pageToggle(1)
 }
 
 function toggleRadioClasses(domain_input, extension_input){
@@ -51,23 +57,93 @@ function toggleRadioClasses(domain_input, extension_input){
     document.getElementById(extension_input).classList.remove("radioUnselected")
 }
 
-function fillTables(domain_input,extension_input){
+function nav(page_num){
+    var domain_cookie = getCookie("domain")
+    var extension_cookie = getCookie("extension")
+    fillTables(domain_cookie,extension_cookie,page_num)
+    pageToggle(page_num)
+}
+
+function fillTables(domain_input,extension_input,page_num){
+    page_num = page_num - 1
     var free_array = json_data[extension_input][domain_input]["free"]
     var free_list = document.getElementById("freeList");
     free_list.innerHTML = "";
-    for (var i = 0; i < free_array.length; i++) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(free_array[i] + "." + extension_input));
-        free_list.appendChild(li);
+    var free_iter = 1000 * page_num
+    var free_end = 1000 * (page_num + 1)
+    if(free_end > free_array.length){
+        free_end = free_array.length
+    }
+    if(free_iter < free_end){
+        for (var free_iter; free_iter < free_end; free_iter++) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(free_array[free_iter] + "." + extension_input));
+            free_list.appendChild(li);
+        }
     }
     var taken_array = json_data[extension_input][domain_input]["taken"]
     var taken_list = document.getElementById("takenList");
     taken_list.innerHTML = "";
-    for (var i = 0; i < taken_array.length; i++) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(taken_array[i] + "." + extension_input));
-        taken_list.appendChild(li);
+    var taken_iter = 1000 * page_num
+    var taken_end = 1000 * (page_num + 1)
+    if(taken_end > taken_array.length){
+        taken_end = taken_array.length
     }
+    if(taken_iter < taken_end){
+        for (var taken_iter; taken_iter < taken_end; taken_iter++) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(taken_array[taken_iter] + "." + extension_input));
+            taken_list.appendChild(li);
+        }
+    }
+}
+
+function pageToggle(cur_page){
+    cur_page = cur_page
+    var domain_cookie = getCookie("domain")
+    var extension_cookie = getCookie("extension")
+    var free_pages = Math.ceil(json_data[extension_cookie][domain_cookie]["free"].length/1000)
+    var taken_pages = Math.ceil(json_data[extension_cookie][domain_cookie]["taken"].length/1000)
+    var total_pages = free_pages
+    if(taken_pages > free_pages){
+        total_pages = taken_pages
+    }
+
+    // Getting the page toggle elements
+    var back =  document.getElementById("back")
+    var center =  document.getElementById("center")
+    var forward =  document.getElementById("forward")
+
+    // Back, forward, and center defaults
+    back.style.color = "#292f33";
+    back.style.cursor = "pointer";
+    back.style.visibility = "visible";
+    back.onclick = function () { nav(cur_page-1); };
+    forward.style.color = "#292f33";
+    forward.style.cursor = "pointer";
+    forward.style.visibility = "visible";
+    forward.onclick = function () { nav(cur_page+1); };
+    center.style.visibility = "visible";
+
+    // Back and forward exceptions
+    if(cur_page == 1 && cur_page == total_pages){
+        forward.style.visibility = "hidden";
+        back.style.visibility = "hidden";
+        center.style.visibility = "hidden";
+    }
+    if(cur_page == 1){
+        back.style.color = "#F1F1F1";
+        back.style.cursor = "default";
+        back.onclick = function () { void(0); };
+    }
+    if(cur_page == total_pages){
+        forward.style.color = "#F1F1F1";
+        forward.style.cursor = "default";
+        forward.onclick = function () { void(0); };
+    }
+
+    // Setting the page number
+    center.innerHTML = cur_page
 }
 
 function toggleRadioButtonBackground(){
@@ -163,4 +239,20 @@ function createListElements(){
             document.getElementById("speedyHiddenListContainer").appendChild(freeList);
         }
     }
+}
+
+function setDownloadLinks(domain_cookie,extension_cookie){
+    var free_download = document.getElementById("freeDownload")
+    free_download.href = "web/data/" + extension_cookie + "/" + domain_cookie + "/free.txt"
+    free_download.download = "free.txt"
+    var taken_download = document.getElementById("takenDownload")
+    taken_download.href = "web/data/" + extension_cookie + "/" + domain_cookie + "/taken.txt"
+    free_download.download = "taken.txt"
+}
+
+function setDateHeader(domain_cookie,extension_cookie){
+    var da = json_data[extension_cookie][domain_cookie]["date"].split("_")
+    var date_formatted = da[1] + "/" + da[2] + "/" + da[0]
+    var dateLabel = document.getElementById("dateLabel")
+    dateLabel.innerHTML = "Date Ran: " + date_formatted
 }
