@@ -72,8 +72,8 @@ function tilesOnLoad() {
     imgArray[1].onload = onloadCallback;
     imgArray[0].onerror = onerrorCallback;
     imgArray[1].onerror = onerrorCallback;
-    imgArray[0].src = "web/img/c.svg";
-    imgArray[1].src = "web/img/d.svg";
+    imgArray[0].src = "web/img/tile_a.svg";
+    imgArray[1].src = "web/img/tile_b.svg";
 }
 
 function tilesGetRandomInt(max) {
