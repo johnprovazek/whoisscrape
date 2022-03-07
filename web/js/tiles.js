@@ -36,11 +36,9 @@ function tilesOnLoad() {
     canvas.width = screenWidth
     canvas.height = screenHeight
     var Counter = 0;
-    var TotalImages = 4;
+    var TotalImages = 2;
     imgArray[0] = new Image();
     imgArray[1] = new Image();
-    imgArray[2] = new Image();
-    imgArray[3] = new Image();
     var notLoadedImages = [];
     var onloadCallback = function(){
         Counter++;
@@ -72,16 +70,10 @@ function tilesOnLoad() {
     };
     imgArray[0].onload = onloadCallback;
     imgArray[1].onload = onloadCallback;
-    imgArray[2].onload = onloadCallback;
-    imgArray[3].onload = onloadCallback;
     imgArray[0].onerror = onerrorCallback;
     imgArray[1].onerror = onerrorCallback;
-    imgArray[2].onerror = onerrorCallback;
-    imgArray[3].onerror = onerrorCallback;
-    imgArray[0].src = "../img/a.svg";
-    imgArray[1].src = "../img/b.svg";
-    imgArray[2].src = "web/img/c.svg";
-    imgArray[3].src = "web/img/d.svg";
+    imgArray[0].src = "web/img/c.svg";
+    imgArray[1].src = "web/img/d.svg";
 }
 
 function tilesGetRandomInt(max) {
