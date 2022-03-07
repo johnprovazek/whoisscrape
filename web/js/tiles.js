@@ -78,8 +78,8 @@ function tilesOnLoad() {
     imgArray[1].onerror = onerrorCallback;
     imgArray[2].onerror = onerrorCallback;
     imgArray[3].onerror = onerrorCallback;
-    imgArray[0].src = "web/img/a.svg";
-    imgArray[1].src = "web/img/b.svg";
+    imgArray[0].src = "../img/a.svg";
+    imgArray[1].src = "../img/b.svg";
     imgArray[2].src = "web/img/c.svg";
     imgArray[3].src = "web/img/d.svg";
 }
