@@ -21,7 +21,7 @@ function tilesOnResize() {
             context.drawImage(imgArray[imgGridArray[i][j]], i*tile_distance, j*tile_distance, tile_distance, tile_distance);
         }
     }
-    tilesSetGradientVars()
+    // tilesSetGradientVars()
 }
 
 function tilesOnLoad() {
@@ -80,17 +80,17 @@ function tilesGetRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function tilesSetGradientVars(){
-    let root = document.documentElement
-    var window_width = window.innerWidth
-    var content_width = document.getElementById('preamble').offsetWidth
-    var content_width_extended = content_width+ (content_width * (2/7))
-    var offset = (window_width - content_width_extended) / 2
-    var percent1 = (offset / window_width) * 100
-    var percent2 = ((offset + content_width_extended) / window_width) * 100
-    root.style.setProperty('--var2', percent1 + "%")
-    root.style.setProperty('--var3', percent2 + "%")
-}
+// function tilesSetGradientVars(){
+//     let root = document.documentElement
+//     var window_width = window.innerWidth
+//     var content_width = document.getElementById('preamble').offsetWidth
+//     var content_width_extended = content_width+ (content_width * (2/7))
+//     var offset = (window_width - content_width_extended) / 2
+//     var percent1 = (offset / window_width) * 100
+//     var percent2 = ((offset + content_width_extended) / window_width) * 100
+//     root.style.setProperty('--var2', percent1 + "%")
+//     root.style.setProperty('--var3', percent2 + "%")
+// }
 
 document.body.addEventListener('mousemove',function(e) {
     var canvas = document.getElementById("tiles");

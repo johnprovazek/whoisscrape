@@ -8,14 +8,11 @@ window.onload = function(){
         json_data = JSON.parse(text);
         initRadioResults()
     });
-    tilesOnLoad()
-    // navigator.clipboard.writeText("sup fucker")
 }; 
 
 window.addEventListener('resize', function(event){
     toggleRadioButtonBackground()
     setParagraphPadding()
-    tilesOnResize()
 });
 
 function initRadioResults(){
@@ -23,7 +20,6 @@ function initRadioResults(){
     var domain_cookie = getCookie("domain")
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
-    setDateHeader(domain_cookie,extension_cookie)
     setDownloadLinks(domain_cookie,extension_cookie)
     fillTables(domain_cookie,extension_cookie,1)
     pageToggle(1)
@@ -34,7 +30,6 @@ function showResults(domain_input, extension_input) {
     var domain_cookie = getCookie("domain")
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
-    setDateHeader(domain_cookie,extension_cookie)
     setDownloadLinks(domain_cookie,extension_cookie)
     fillTables(domain_cookie, extension_cookie,1)
     pageToggle(1)

@@ -6,17 +6,18 @@
         <link rel="icon" type="image/x-icon" href="web/img/favicon.ico">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="web/css/index.css">
-        <link rel="stylesheet" href="web/css/tiles.css">
     </head>
     <body>
-        <div id="tilesCover"></div>
-        <canvas id="tiles"></canvas>
         <div id="bodyContainer">
             <div class="header1Container">
-                <h1 id="mainHeader"> whoisscrape</h1>
+                <h1 id="mainHeader">whoisscrape 
+                    <a href="https://github.com/johnprovazek/whoisscrape">
+                        <i class="fa fa-github-square" aria-hidden="true"></i>
+                    </a>
+                </h1>
             </div>
             <div id="paragraphContainer">
-                <p id="preamble"> This page is for displaying select results from a script I developed that can be found in my <a href="https://github.com/johnprovazek/whoisscrape">whoisscrape</a> GitHub repo. The script is a bash script to run the whois command on a loop through a list of domain names and domain extensions. </p>
+                <p id="preamble">This project site is for displaying select results from a set of Bash scripts I developed. The scripts run the <i>whois</i> command on a loop through a list of domain names and domain extensions. Change the toggles below to see sample output from the scripts.</p>
             </div>
             <div class="header2Container">
                 <h2 id="domainNamesLabel">Domain Names Wordlist:</h2>
@@ -36,9 +37,6 @@
                 <div id="com" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'com')">.com</div
                 ><div id="net" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'net')">.net</div
                 ><div id="io" class="radioButton extensionRadioButton radioUnselected" onclick="showResults(null, 'io')">.io</div>
-            </div>
-            <div class="header2Container">
-                <h2 id="dateLabel"></h2>
             </div>
             <div class="header2Container">
                 <h2 class="splitHeader">
@@ -76,5 +74,4 @@
         </div>
     </body>
     <script src="web/js/index.js"></script>
-    <script src="web/js/tiles.js"></script>
 </html>
