@@ -23,6 +23,8 @@ function initRadioResults(){
     setDownloadLinks(domain_cookie,extension_cookie)
     fillTables(domain_cookie,extension_cookie,1)
     pageToggle(1)
+    document.getElementById("freeTakenLabelContainer").style.visibility = "visible";
+    document.getElementById("freeTakenContainer").style.visibility = "visible";
 }
 
 function showResults(domain_input, extension_input) {
@@ -33,6 +35,7 @@ function showResults(domain_input, extension_input) {
     setDownloadLinks(domain_cookie,extension_cookie)
     fillTables(domain_cookie, extension_cookie,1)
     pageToggle(1)
+    // document/getElementsByClassName
 }
 
 function toggleRadioClasses(domain_input, extension_input){

@@ -1,16 +1,2 @@
-results/*
-!results/com/
-!results/net/
-!results/us/
-!results/results.json
-results/com/*/domainerror/*
-results/net/*/domainerror/*
-results/io/*/domainerror/*
-results/com/*/domaintaken/*
-results/net/*/domaintaken/*
-results/io/*/domaintaken/*
-results/com/*/domainfree/*
-results/net/*/domainfree/*
-results/io/*/domainfree/*
 workingnotes.txt
 tester.json

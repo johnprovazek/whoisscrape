@@ -97,7 +97,7 @@ li{
 }
 
 .domainRadioButton{
-    width: 9.33333em;
+    width: 11.2em;
 }
 
 .extensionRadioButton{
@@ -136,8 +136,13 @@ li{
 }
 
 #freeTakenContainer{
+    visibility:hidden;
     width: 100%;
     text-align: center;
+}
+
+#freeTakenLabelContainer{
+    visibility:hidden;
 }
 
 #freeTakenBackgroundContainer{
