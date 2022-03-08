@@ -177,3 +177,11 @@ a{
     /* width:0;
     height:0; */
 }
+
+#back{
+    visibility:hidden;
+}
+
+#forward{
+    visibility:hidden;
+}
