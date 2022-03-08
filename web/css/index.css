@@ -7,8 +7,20 @@
 
 /* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"); */
 
+/* @font-face {
+    font-family: "ConsolasMine";
+    src: url("../fonts/consola.ttf");
+} */
+
+@font-face {  
+    font-family: 'ConsolasApple';
+    font-style: normal;  
+    unicode-range: U+000-5FF;
+    src: local('FormataMedium'), url('../fonts/Consolas.woff2') format('woff2'), url('../fonts/Consolas.woff') format('woff');
+}
+
 html{
-    font-family: Consolas;
+    font-family: Consolas, American Typewriter;
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
