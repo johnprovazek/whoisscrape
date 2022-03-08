@@ -29,7 +29,6 @@ html{
 
 body{
     margin:0;
-    background-color: #F1F3F4;
 }
 
 
@@ -78,7 +77,7 @@ li{
 
 .radioUnselected {
     color: #292f33;
-    background-color: #DEE1E6;
+    background-color: #F1F1F1;
 }
 
 .radioContainer {
@@ -151,7 +150,7 @@ li{
     display: inline-block;
     margin: 0;
     border-radius: 0.2em;
-    background-color: #DEE1E6;
+    background-color: #F1F1F1;
     /* margin-bottom: 3em;+ */
 }
 
@@ -174,7 +173,7 @@ li{
     line-height: 2em;
     text-align: center;
     margin: auto;
-    background-color: #DEE1E6;
+    background-color: #F1F1F1;
     border-radius: 0.2em;
 }
 
