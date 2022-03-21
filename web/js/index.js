@@ -2,7 +2,6 @@ var font_size
 var json_data
 window.onload = function(){
     font_size = getComputedStyle(document.body).getPropertyValue('font-size')
-    toggleRadioButtonBackground()
     setParagraphPadding()
     readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
@@ -11,7 +10,6 @@ window.onload = function(){
 }; 
 
 window.addEventListener('resize', function(event){
-    toggleRadioButtonBackground()
     setParagraphPadding()
 });
 
@@ -21,6 +19,7 @@ function initRadioResults(){
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
     setDownloadLinks(domain_cookie,extension_cookie)
+    setDateHeader(domain_cookie,extension_cookie)
     fillTables(domain_cookie,extension_cookie,1)
     pageToggle(1)
     document.getElementById("freeTakenLabelContainer").style.visibility = "visible";
@@ -33,6 +32,7 @@ function showResults(domain_input, extension_input) {
     var extension_cookie = getCookie("extension")
     toggleRadioClasses(domain_cookie, extension_cookie)
     setDownloadLinks(domain_cookie,extension_cookie)
+    setDateHeader(domain_cookie,extension_cookie)
     fillTables(domain_cookie, extension_cookie,1)
     pageToggle(1)
     // document/getElementsByClassName
@@ -75,7 +75,7 @@ function fillTables(domain_input,extension_input,page_num){
     if(free_iter < free_end){
         for (var free_iter; free_iter < free_end; free_iter++) {
             var li = document.createElement("li");
-            li.appendChild(document.createTextNode(free_array[free_iter] + "." + extension_input));
+            li.appendChild(document.createTextNode(free_array[free_iter]));
             free_list.appendChild(li);
         }
     }
@@ -90,7 +90,7 @@ function fillTables(domain_input,extension_input,page_num){
     if(taken_iter < taken_end){
         for (var taken_iter; taken_iter < taken_end; taken_iter++) {
             var li = document.createElement("li");
-            li.appendChild(document.createTextNode(taken_array[taken_iter] + "." + extension_input));
+            li.appendChild(document.createTextNode(taken_array[taken_iter]));
             taken_list.appendChild(li);
         }
     }
@@ -142,25 +142,6 @@ function pageToggle(cur_page){
 
     // Setting the page number
     center.innerHTML = cur_page
-}
-
-function toggleRadioButtonBackground(){
-    var start_element_domain = document.getElementById("domainNamesRadio").firstElementChild
-    var end_element_domain = document.getElementById("domainNamesRadio").lastElementChild
-    if(start_element_domain.offsetTop == end_element_domain.offsetTop){
-        document.getElementById("domainNamesRadio").style.backgroundColor = "transparent";
-    }
-    else{
-        document.getElementById("domainNamesRadio").style.backgroundColor = "#F1F1F1";
-    }
-    var start_element_extension = document.getElementById("extensionNamesRadio").firstElementChild
-    var end_element_extension = document.getElementById("extensionNamesRadio").lastElementChild
-    if(start_element_extension.offsetTop == end_element_extension.offsetTop){
-        document.getElementById("extensionNamesRadio").style.backgroundColor = "transparent";
-    }
-    else{
-        document.getElementById("extensionNamesRadio").style.backgroundColor = "#F1F1F1";
-    }
 }
 
 function setParagraphPadding(){
@@ -240,12 +221,13 @@ function createListElements(){
 }
 
 function setDownloadLinks(domain_cookie,extension_cookie){
+    var date = json_data[extension_cookie][domain_cookie].date
     var free_download = document.getElementById("freeDownload")
-    free_download.href = "web/data/" + extension_cookie + "/" + domain_cookie + "/free.txt"
-    free_download.download = "free.txt"
+    free_download.href = "results/" + extension_cookie + "/" + domain_cookie + "/domainfree/free" + date + ".txt"
+    free_download.download = domain_cookie + "_" + extension_cookie + "_free" + date + ".txt"
     var taken_download = document.getElementById("takenDownload")
-    taken_download.href = "web/data/" + extension_cookie + "/" + domain_cookie + "/taken.txt"
-    free_download.download = "taken.txt"
+    taken_download.href = "results/" + extension_cookie + "/" + domain_cookie + "/domaintaken/taken" + date + ".txt"
+    taken_download.download = domain_cookie + "_" + extension_cookie + "_taken" + date + ".txt"
 }
 
 function setDateHeader(domain_cookie,extension_cookie){

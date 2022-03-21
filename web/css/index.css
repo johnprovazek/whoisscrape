@@ -82,10 +82,11 @@ li{
 }
 
 .radioContainer {
-    width: 100%;
+    width: min(56em,100%);
+    background-color: #DEE1E6;
+    margin: auto;
     text-align: center;
     border-radius: 0.2em;
-    background-color: transparent;
 }
 
 .radioButton {
