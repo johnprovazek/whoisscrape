@@ -2,7 +2,7 @@
 
 ## Description
 
-This project was initially created with the intention to find the smallest possible domain name that I could purchase. This project is mostly written using Bash scripts. They work by running the *whois* command on a loop with an input of a domain name wordlist and domain extension wordlist. This project is helpful if you would like to quickly query the availability of a specific list of domain names and domain extensions. To see select results from this script you can view them at [johnprovazek.com/whoisscrape](https://www.johnprovazek.com/whoisscrape/).
+This project was initially created with the intention to find the smallest possible domain name that I could purchase. This project is mostly written using Bash scripts. The scripts work by running the *whois* command on a loop with an input of a domain name wordlist and domain extension wordlist. This project is helpful if you would like to quickly query the availability of a specific list of domain names and domain extensions. To see select results from this script you can view them at [johnprovazek.com/whoisscrape](https://www.johnprovazek.com/whoisscrape/).
 
 Built using Bash scripts. A Python script for formatting data into JSON format. Project site is developed using vanilla JavaScript.
 
