@@ -171,7 +171,7 @@ li{
 
 #paragraphContainer{
     width: min(56em,100%);
-    height: 6em;
+    overflow: auto;
     line-height: 2em;
     text-align: center;
     margin: auto;

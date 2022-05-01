@@ -2,16 +2,11 @@ var font_size
 var json_data
 window.onload = function(){
     font_size = getComputedStyle(document.body).getPropertyValue('font-size')
-    setParagraphPadding()
     readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
         initRadioResults()
     });
-}; 
-
-window.addEventListener('resize', function(event){
-    setParagraphPadding()
-});
+};
 
 function initRadioResults(){
     setCookie(null,null)
@@ -142,18 +137,6 @@ function pageToggle(cur_page){
 
     // Setting the page number
     center.innerHTML = cur_page
-}
-
-function setParagraphPadding(){
-    var element = document.getElementById("preamble")
-    var container = document.getElementById("paragraphContainer")
-    var computedStyle = getComputedStyle(element);
-    var paragraph_height = element.clientHeight;  // height with padding    
-    paragraph_height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
-    var paragraph_height_em = paragraph_height/parseFloat(font_size)
-    var increment_of_3 = Math.ceil(paragraph_height_em/2.0) * 2
-    var container_height = increment_of_3 + "em"
-    container.style.height = container_height
 }
 
 function readTextFile(file, callback) {
