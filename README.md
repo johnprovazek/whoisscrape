@@ -62,7 +62,7 @@ The results will be stored in the [results](./results) directory.
 ## Bugs & Improvements
 - Add logic to handle extensions that impose a quota
 - Fix slow website load speed limited by 40MB JSON file.
-- Use linter and find a style guide
+- Use a linter and a style guide
 
 ## Device Tests
 
