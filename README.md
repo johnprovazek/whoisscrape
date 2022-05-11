@@ -61,18 +61,17 @@ The results will be stored in the [results](./results) directory.
 
 ## Bugs & Improvements
 - Add logic to handle extensions that impose a quota
-- Fix slow website load speed limited by 40MB JSON file.
 - Use a linter and a style guide
 
 ## Device Tests
 
 | Device                  | Browser       | Viewport Width | Viewport Height | Screen Width | Screen Height | DPR  | Default View | Alt View                         | Notes                                                |
 |-------------------------|---------------|----------------|-----------------|--------------|---------------|------|--------------|----------------------------------|------------------------------------------------------|
-| Windows 10              | Chrome 101    | 2560           | 1329            | 2560         | 1440          | 1.00 | 5/1/2022     | null                             |                                                      |
-| Windows 10              | Edge 101      | 2560           | 1329            | 2560         | 2560          | 1.00 | 5/1/2022     | null                             |                                                      |
-| Windows 10              | Firefox 99    | 2560           | 1315            | 2560         | 2560          | 1.00 | 5/1/2022     | null                             |                                                      |
-| iPad Pro 11inch 3rd Gen | Safari iOS 15 | 834            | 1075            | 834          | 1194          | 2.00 | 5/1/2022     | 5/1/2022                         |                                                      |
-| iPad Pro 11inch 3rd Gen | Chrome 101    | 834            | 1087            | 834          | 1194          | 2.00 | 5/1/2022     | 5/1/2022                         |                                                      |
-| Pixel 3                 | Chrome 101    | 393            | 654             | 393          | 786           | 2.75 | 5/1/2022     | 5/1/2022                         |                                                      |
-| iPhone 13               | Chrome 101    | 414            | 720             | 414          | 896           | 2.00 | 5/1/2022     | 5/1/2022                         |                                                      |
-| iPhone 13               | Safari iOS 15 | 414            | 714             | 414          | 896           | 2.00 | 5/1/2022     | 5/1/2022                         |                                                      |
+| Windows 10              | Chrome 101    | 2560           | 1329            | 2560         | 1440          | 1.00 | 5/11/2022     | null                             |                                                      |
+| Windows 10              | Edge 101      | 2560           | 1329            | 2560         | 2560          | 1.00 | 5/11/2022     | null                             |                                                      |
+| Windows 10              | Firefox 99    | 2560           | 1315            | 2560         | 2560          | 1.00 | 5/11/2022     | null                             |                                                      |
+| iPad Pro 11inch 3rd Gen | Safari iOS 15 | 834            | 1075            | 834          | 1194          | 2.00 | 5/11/2022     | 5/11/2022                         |                                                      |
+| iPad Pro 11inch 3rd Gen | Chrome 101    | 834            | 1087            | 834          | 1194          | 2.00 | 5/11/2022     | 5/11/2022                         |                                                      |
+| Pixel 3                 | Chrome 101    | 393            | 654             | 393          | 786           | 2.75 | 5/11/2022     | 5/11/2022                         |                                                      |
+| iPhone 13               | Chrome 101    | 414            | 720             | 414          | 896           | 2.00 | 5/11/2022     | 5/11/2022                         |                                                      |
+| iPhone 13               | Safari iOS 15 | 414            | 714             | 414          | 896           | 2.00 | 5/11/2022     | 5/11/2022                         |                                                      |

@@ -4,6 +4,8 @@ window.onload = function(){
     font_size = getComputedStyle(document.body).getPropertyValue('font-size')
     readTextFile("results/results.json", function(text){
         json_data = JSON.parse(text);
+        var loadingContainer = document.getElementById("loadingContainer")
+        loadingContainer.remove();
         initRadioResults()
     });
 };
@@ -140,9 +142,15 @@ function pageToggle(cur_page){
 }
 
 function readTextFile(file, callback) {
+    var loadingLabel = document.getElementById("loadingContainer").children[0]
     var rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
     rawFile.open("GET", file, true);
+    rawFile.onprogress = function(evt) {
+        var percentComplete = Math.floor((evt.loaded / evt.total) * 100); 
+        console.log(percentComplete)
+        loadingLabel.innerHTML = "Loading Data: " + percentComplete + "%"
+    }
     rawFile.onreadystatechange = function() {
         if (rawFile.readyState === 4 && rawFile.status == "200") {
             callback(rawFile.responseText);
