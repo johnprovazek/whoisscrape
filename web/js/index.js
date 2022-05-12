@@ -147,7 +147,7 @@ function readTextFile(file, callback) {
     rawFile.overrideMimeType("application/json");
     rawFile.open("GET", file, true);
     rawFile.onprogress = function(evt) {
-        var percentComplete = Math.floor((evt.loaded / evt.total) * 100); 
+        var percentComplete = parseInt((evt.loaded / evt.total) * 100); 
         console.log(percentComplete)
         loadingLabel.innerHTML = "Loading Data: " + percentComplete + "%"
     }
