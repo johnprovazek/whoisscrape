@@ -62,6 +62,7 @@ The results will be stored in the [results](./results) directory.
 ## Bugs & Improvements
 - Add logic to handle extensions that impose a quota.
 - Use a linter and a style guide.
+- Directory setup for results could be improved. Assumes either empty or complete.
 
 ## Device Tests
 

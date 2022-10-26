@@ -168,5 +168,5 @@ fi
 if $jsoninput
 then
     echo "Formatting latest results into a JSON file"
-    python ./json_convert.py
+    python3 ./json_convert.py
 fi
