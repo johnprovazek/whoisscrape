@@ -1,208 +1,181 @@
-:root {
-    /* --var1: 0;
-    --var2: 33%;
-    --var3: 66%;
-    --var4: 100%; */
-}
-
-/* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"); */
-
-/* @font-face {
-    font-family: "ConsolasMine";
-    src: url("../fonts/consola.ttf");
-} */
-
-@font-face {  
-    font-family: 'ConsolasApple';
-    font-style: normal;  
-    unicode-range: U+000-5FF;
-    src: local('FormataMedium'), url('../fonts/Consolas.woff2') format('woff2'), url('../fonts/Consolas.woff') format('woff');
+@font-face {
+  font-family: 'ConsolasApple';
+  font-style: normal;
+  unicode-range: U+000-5FF;
+  src: url('../fonts/Consolas.woff2') format('woff2'), url('../fonts/Consolas.woff') format('woff');
 }
 
 html{
-    font-family: Consolas, ConsolasApple;
-    -webkit-user-select: none; /* Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
-    overflow: -moz-scrollbars-vertical; 
-    overflow-y: scroll;
+  font-family: Consolas, ConsolasApple;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: -moz-scrollbars-vertical; 
+  overflow-y: scroll;
 }
 
 body{
-    margin:0;
-    background-color: #F1F3F4;
+  margin:0;
+  background-color: #F1F3F4;
 }
 
-
-
-#bodyContainer{
-    margin-left: 1vw;
-    margin-right: 1vw;
-    margin-bottom:0;
-    margin-top:0;
-    height: 100vh;
-    /* background-color: green; */
-    color: #292f33;
+#body-container{
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom:0;
+  margin-top:0;
+  height: 100vh;
+  color: #292f33;
 }
 
 h1{
-    font-size: 3em;
-    margin-top: 0;
-    margin-bottom: 0;
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 h2{
-    font-size: 1.5em; 
-    margin-top: 0;
-    margin-bottom: 0;
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ol {
-    -webkit-user-select: text; /* Safari */        
-    -moz-user-select: text; /* Firefox */
-    -ms-user-select: text; /* IE10+/Edge */
-    user-select: text; /* Standard */
-    padding-left: 0;
+  padding-left: 0;
 }
 
 li{
-    list-style-type: none;
-    height: 1.5em;
-    line-height: 1.5em;
-}
-
-.radioSelected {
-    color: white;
-    background-color: #292f33;
-    border-radius: 0.2em;
-}
-
-.radioUnselected {
-    color: #292f33;
-    background-color: #DEE1E6;
-}
-
-.radioContainer {
-    width: min(56em,100%);
-    background-color: #DEE1E6;
-    margin: auto;
-    text-align: center;
-    border-radius: 0.2em;
-}
-
-.radioButton {
-    height: 3em;
-    line-height: 3em;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-.domainRadioButton{
-    width: 11.2em;
-}
-
-.extensionRadioButton{
-    width: 18.66666em;
-}
-
-.radioButton:first-child {
-    border-bottom-left-radius: 0.2em;
-    border-top-left-radius: 0.2em;
-}
-
-.radioButton:last-child {
-    border-bottom-right-radius: 0.2em;
-    border-top-right-radius: 0.2em;
-}
-
-.header1Container {
-    width: min(56em,100%);
-    height: 6em;
-    line-height: 6em;
-    text-align: center;
-    margin: auto;
-}
-
-.header2Container {
-    width: min(56em,100%);
-    height: 3em;
-    line-height: 3em;
-    text-align: center;
-    margin: auto;
-}
-
-.splitHeader{
-    display: inline-block;
-    width: min(28em,50%);
-}
-
-#freeTakenContainer{
-    visibility:hidden;
-    width: 100%;
-    text-align: center;
-}
-
-#freeTakenLabelContainer{
-    visibility:hidden;
-}
-
-#freeTakenBackgroundContainer{
-    width: min(56em,100%);
-    display: inline-block;
-    margin: 0;
-    border-radius: 0.2em;
-    background-color: #DEE1E6;
-    /* margin-bottom: 3em;+ */
-}
-
-.freeTakenListContainer{
-    width: min(28em,50%);
-    display: inline-block;
-    vertical-align: top;
-}
-
-#free{
-    /* background-color: orange; */
-}
-#taken{
-    /* background-color: blanchedalmond; */
-}
-
-#paragraphContainer{
-    width: min(56em,100%);
-    overflow: auto;
-    line-height: 2em;
-    text-align: center;
-    margin: auto;
-    background-color: #DEE1E6;
-    border-radius: 0.2em;
-}
-
-#preamble{
-    margin:0
-    /* text-align: center; */
-    /* vertical-align: middle; */
+  list-style-type: none;
+  height: 1.5em;
+  line-height: 1.5em;
 }
 
 a{
-    color: #292f33;
+  color: #292f33;
 }
 
-#pageToggleContainer{
-    /* visibility: hidden; */
-    /* width: min(56em,100%); */
-    /* height: 3em; */
-    /* width:0;
-    height:0; */
+.title-container {
+  width: min(56em,100%);
+  height: 6em;
+  line-height: 6em;
+  text-align: center;
+  margin: auto;
 }
 
-#back{
-    visibility:hidden;
+#paragraph-container{
+  width: min(56em,100%);
+  overflow: auto;
+  line-height: 2em;
+  text-align: center;
+  margin: auto;
+  background-color: #DEE1E6;
+  border-radius: 0.2em;
 }
 
-#forward{
-    visibility:hidden;
+#paragraph-container > p {
+  margin:0;
+}
+
+.header-container {
+  width: min(56em,100%);
+  height: 3em;
+  line-height: 3em;
+  text-align: center;
+  margin: auto;
+}
+
+.radio-container {
+  width: min(56em,100%);
+  background-color: #DEE1E6;
+  margin: auto;
+  text-align: center;
+  border-radius: 0.2em;
+}
+
+.radio-selected {
+  color: white;
+  background-color: #292f33;
+  border-radius: 0.2em;
+}
+
+.radio-unselected {
+  color: #292f33;
+  background-color: #DEE1E6;
+}
+
+.radio-button {
+  height: 3em;
+  line-height: 3em;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.radio-button:first-child {
+  border-bottom-left-radius: 0.2em;
+  border-top-left-radius: 0.2em;
+}
+
+.radio-button:last-child {
+  border-bottom-right-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+}
+
+.domain-radio-button{
+  width: 11.2em;
+}
+
+.extension-radio-button{
+  width: 18.66666em;
+}
+
+#free-taken-label-container{
+  visibility:hidden;
+}
+
+.split-header{
+  display: inline-block;
+  width: min(28em,50%);
+}
+
+#free-taken-container{
+  visibility:hidden;
+  width: 100%;
+  text-align: center;
+}
+
+#free-taken-content-container{
+  width: min(56em,100%);
+  display: inline-block;
+  margin: 0;
+  border-radius: 0.2em;
+  background-color: #DEE1E6;
+}
+
+.free-taken-list-container{
+  width: min(28em,50%);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.nav-toggle{
+  color: #292f33;
+  cursor: pointer;
+  visibility: visible;
+}
+
+.nav-toggle-disabled{
+  cursor: default !important;
+  visibility: hidden !important;
+}
+
+#page-num{
+  color: #292f33;
+  visibility: visible;
+}
+
+.page-num-disabled{
+  visibility: hidden !important;
 }

@@ -1,229 +1,217 @@
-var font_size
-var json_data
+var jsonData; // JSON containing the demo project select results data.
+var domainsPerPage = 500; // Number of domains to show per each page.
+
 window.onload = function(){
-    font_size = getComputedStyle(document.body).getPropertyValue('font-size')
-    readTextFile("results/results.json", function(text){
-        json_data = JSON.parse(text);
-        var loadingContainer = document.getElementById("loadingContainer")
-        loadingContainer.remove();
-        initRadioResults()
-    });
+  loadJsonFile('results/results.json', function(text){
+    jsonData = JSON.parse(text);
+    let loadingContainer = document.getElementById('loading-container');
+    loadingContainer.remove();
+    initRadioResults();
+  });
 };
 
+// Handles loading a JSON file and returns the text to a callback function when loaded.
+function loadJsonFile(file, callback) {
+  let loadingLabel = document.getElementById('loading-label');
+  let rawFile = new XMLHttpRequest();
+  rawFile.overrideMimeType('application/json');
+  rawFile.open('GET', file, true);
+  rawFile.onprogress = function(event) {
+    let percentComplete = parseInt((event.loaded / event.total) * 100);
+    if(!isNaN(percentComplete)) {
+      loadingLabel.innerHTML = 'Loading Data: ' + percentComplete + '%'
+    }
+  }
+  rawFile.onreadystatechange = function() {
+    if(rawFile.readyState === 4 && rawFile.status == '200') {
+      callback(rawFile.responseText);
+    }
+  }
+  rawFile.send(null);
+}
+
+// Initializes the radio buttons and results.
 function initRadioResults(){
-    setCookie(null,null)
-    var domain_cookie = getCookie("domain")
-    var extension_cookie = getCookie("extension")
-    toggleRadioClasses(domain_cookie, extension_cookie)
-    setDownloadLinks(domain_cookie,extension_cookie)
-    setDateHeader(domain_cookie,extension_cookie)
-    fillTables(domain_cookie,extension_cookie,1)
-    pageToggle(1)
-    document.getElementById("freeTakenLabelContainer").style.visibility = "visible";
-    document.getElementById("freeTakenContainer").style.visibility = "visible";
+  showResults(null, null);
+  document.getElementById('free-taken-label-container').style.visibility = 'visible';
+  document.getElementById('free-taken-container').style.visibility = 'visible';
 }
 
-function showResults(domain_input, extension_input) {
-    setCookie(domain_input,extension_input)
-    var domain_cookie = getCookie("domain")
-    var extension_cookie = getCookie("extension")
-    toggleRadioClasses(domain_cookie, extension_cookie)
-    setDownloadLinks(domain_cookie,extension_cookie)
-    setDateHeader(domain_cookie,extension_cookie)
-    fillTables(domain_cookie, extension_cookie,1)
-    pageToggle(1)
-    // document/getElementsByClassName
+// Handles when a radio toggle has been selected.
+function showResults(domainInput,extensionInput) {
+  setCookie(domainInput,extensionInput);
+  let domainCookie = getCookie('domain');
+  let extensionCookie = getCookie('extension');
+  toggleRadioClasses(domainCookie,extensionCookie);
+  setDownloadLinks(domainCookie,extensionCookie);
+  setDateHeader(domainCookie,extensionCookie);
+  fillTables(domainCookie,extensionCookie,1);
+  pageToggle(1);
 }
 
-function toggleRadioClasses(domain_input, extension_input){
-    var domain_elements = document.getElementsByClassName("domainRadioButton")
-    for (var i = 0; i < domain_elements.length; i++) {
-        domain_elements[i].classList.remove("radioSelected")
-        domain_elements[i].classList.add("radioUnselected")
+// Handles retrieving a cookie value.
+function getCookie(cookieName) {
+  let name = cookieName + '=';
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-    document.getElementById(domain_input).classList.add("radioSelected")
-    document.getElementById(domain_input).classList.remove("radioUnselected")
-    var extension_elements = document.getElementsByClassName("extensionRadioButton")
-    for (var i = 0; i < extension_elements.length; i++) {
-        extension_elements[i].classList.remove("radioSelected")
-        extension_elements[i].classList.add("radioUnselected")
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
     }
-    document.getElementById(extension_input).classList.add("radioSelected")
-    document.getElementById(extension_input).classList.remove("radioUnselected")
+  }
+  return '';
 }
 
-function nav(page_num){
-    var domain_cookie = getCookie("domain")
-    var extension_cookie = getCookie("extension")
-    fillTables(domain_cookie,extension_cookie,page_num)
-    pageToggle(page_num)
-}
-
-function fillTables(domain_input,extension_input,page_num){
-    page_num = page_num - 1
-    var free_array = json_data[extension_input][domain_input]["free"]
-    var free_list = document.getElementById("freeList");
-    free_list.innerHTML = "";
-    var free_iter = 1000 * page_num
-    var free_end = 1000 * (page_num + 1)
-    if(free_end > free_array.length){
-        free_end = free_array.length
-    }
-    if(free_iter < free_end){
-        for (var free_iter; free_iter < free_end; free_iter++) {
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(free_array[free_iter]));
-            free_list.appendChild(li);
-        }
-    }
-    var taken_array = json_data[extension_input][domain_input]["taken"]
-    var taken_list = document.getElementById("takenList");
-    taken_list.innerHTML = "";
-    var taken_iter = 1000 * page_num
-    var taken_end = 1000 * (page_num + 1)
-    if(taken_end > taken_array.length){
-        taken_end = taken_array.length
-    }
-    if(taken_iter < taken_end){
-        for (var taken_iter; taken_iter < taken_end; taken_iter++) {
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(taken_array[taken_iter]));
-            taken_list.appendChild(li);
-        }
-    }
-}
-
-function pageToggle(cur_page){
-    cur_page = cur_page
-    var domain_cookie = getCookie("domain")
-    var extension_cookie = getCookie("extension")
-    var free_pages = Math.ceil(json_data[extension_cookie][domain_cookie]["free"].length/1000)
-    var taken_pages = Math.ceil(json_data[extension_cookie][domain_cookie]["taken"].length/1000)
-    var total_pages = free_pages
-    if(taken_pages > free_pages){
-        total_pages = taken_pages
-    }
-
-    // Getting the page toggle elements
-    var back =  document.getElementById("back")
-    var center =  document.getElementById("center")
-    var forward =  document.getElementById("forward")
-
-    // Back, forward, and center defaults
-    back.style.color = "#292f33";
-    back.style.cursor = "pointer";
-    back.style.visibility = "visible";
-    back.onclick = function () { nav(cur_page-1); };
-    forward.style.color = "#292f33";
-    forward.style.cursor = "pointer";
-    forward.style.visibility = "visible";
-    forward.onclick = function () { nav(cur_page+1); };
-    center.style.visibility = "visible";
-
-    // Back and forward exceptions
-    if(cur_page == 1 && cur_page == total_pages){
-        forward.style.visibility = "hidden";
-        back.style.visibility = "hidden";
-        center.style.visibility = "hidden";
-    }
-    if(cur_page == 1){
-        back.style.color = "#F1F1F1";
-        back.style.cursor = "default";
-        back.onclick = function () { void(0); };
-    }
-    if(cur_page == total_pages){
-        forward.style.color = "#F1F1F1";
-        forward.style.cursor = "default";
-        forward.onclick = function () { void(0); };
-    }
-
-    // Setting the page number
-    center.innerHTML = cur_page
-}
-
-function readTextFile(file, callback) {
-    var loadingLabel = document.getElementById("loadingContainer").children[0]
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onprogress = function(evt) {
-        var percentComplete = parseInt((evt.loaded / evt.total) * 100); 
-        console.log(percentComplete)
-        loadingLabel.innerHTML = "Loading Data: " + percentComplete + "%"
-    }
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
-}
-
+// Handles setting domain and extension cookie values.
 function setCookie(domain,extension) {
-    var domain_cookie = getCookie("domain");
-    var extension_cookie = getCookie("extension");
-    if (domain_cookie == "") {
-        document.cookie = "domain=alpha1;"
-    }
-    else if(domain != null) {
-        document.cookie = "domain=" + domain + ";"
-    } 
-    if (extension_cookie == "") {
-        document.cookie = "extension=com;"
-    }
-    else if(extension != null) {
-        document.cookie = "extension=" + extension + ";"
-    }
+  let domainCookie = getCookie('domain');
+  let extensionCookie = getCookie('extension');
+  if(domainCookie == '') {
+    document.cookie = 'domain=alpha1;';
+  }
+  else if(domain != null) {
+    document.cookie = 'domain=' + domain + ';';
+  } 
+  if(extensionCookie == '') {
+    document.cookie = 'extension=com;';
+  }
+  else if(extension != null) {
+    document.cookie = 'extension=' + extension + ';';
+  }
 }
 
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+// Toggles Domain and Extension radio classes.
+function toggleRadioClasses(domainInput, extensionInput){
+  // Toggle Domain radio classes.
+  let domainElements = document.getElementsByClassName('domain-radio-button');
+  for (let i = 0; i < domainElements.length; i++) {
+    domainElements[i].classList.remove('radio-selected');
+    domainElements[i].classList.add('radio-unselected');
+  }
+  let domainElement = document.getElementById(domainInput);
+  domainElement.classList.remove('radio-unselected');
+  domainElement.classList.add('radio-selected');
+  // Toggle Extension radio classes.
+  let extensionElements = document.getElementsByClassName('extension-radio-button');
+  for (let i = 0; i < extensionElements.length; i++) {
+    extensionElements[i].classList.remove('radio-selected');
+    extensionElements[i].classList.add('radio-unselected');
+  }
+  let extensionElement = document.getElementById(extensionInput);
+  extensionElement.classList.remove('radio-unselected');
+  extensionElement.classList.add('radio-selected');
+}
+
+// Sets download links for text files of the free and taken domains.
+function setDownloadLinks(domainCookie,extensionCookie){
+  let date = jsonData[extensionCookie][domainCookie].date
+  let freeDownload = document.getElementById('free-download')
+  freeDownload.href = 'results/' + extensionCookie + '/' + domainCookie + '/domainfree/free' + date + '.txt'
+  freeDownload.download = domainCookie + '_' + extensionCookie + '_free' + date + '.txt'
+  let takenDownload = document.getElementById('taken-download')
+  takenDownload.href = 'results/' + extensionCookie + '/' + domainCookie + '/domaintaken/taken' + date + '.txt'
+  takenDownload.download = domainCookie + '_' + extensionCookie + '_taken' + date + '.txt'
+}
+
+// Sets the date label with the date the data was gathered.
+function setDateHeader(domainCookie,extensionCookie){
+  let date = jsonData[extensionCookie][domainCookie]['date'].split('_')
+  let dateFormatted = date[1] + '/' + date[2] + '/' + date[0]
+  let dateLabel = document.getElementById('date-label')
+  dateLabel.innerHTML = 'Date Ran: ' + dateFormatted
+}
+
+// Handles filling the list of free and taken domains.
+function fillTables(domainInput,extensionInput,pageNum){
+  pageNum = pageNum - 1;
+  let freeArray = jsonData[extensionInput][domainInput]['free'];
+  let freeList = document.getElementById('free-list');
+  freeList.innerHTML = '';
+  let freeIter = domainsPerPage * pageNum;
+  let freeEnd = domainsPerPage * (pageNum + 1);
+  if(freeEnd > freeArray.length){
+    freeEnd = freeArray.length;
+  }
+  if(freeIter < freeEnd){
+    for (freeIter; freeIter < freeEnd; freeIter++) {
+      let li = document.createElement('li');
+      li.appendChild(document.createTextNode(freeArray[freeIter]));
+      freeList.appendChild(li);
     }
-    return "";
-}
-
-function createListElements(){
-    var domain_elements = document.getElementsByClassName("domainRadioButton")
-    var extension_elements = document.getElementsByClassName("extensionRadioButton")
-    for (var i = 0; i < domain_elements.length; i++) {
-        for (var j = 0; j < extension_elements.length; j++) {
-            var do_id = domain_elements[i].id
-            var ex_id = extension_elements[j].id
-            var free_array = json_data[ex_id][do_id]["free"]
-            freeList = document.createElement('ul')
-            freeList.id = do_id + "_" + ex_id
-            for (var k = 0; k < free_array.length; k++) {
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(free_array[k] + "." + ex_id));
-                freeList.appendChild(li);
-            }
-            document.getElementById("speedyHiddenListContainer").appendChild(freeList);
-        }
+  }
+  let takenArray = jsonData[extensionInput][domainInput]['taken'];
+  let takenList = document.getElementById('taken-list');
+  takenList.innerHTML = '';
+  let takenIter = domainsPerPage * pageNum;
+  let takenEnd = domainsPerPage * (pageNum + 1);
+  if(takenEnd > takenArray.length){
+    takenEnd = takenArray.length;
+  }
+  if(takenIter < takenEnd){
+    for (takenIter; takenIter < takenEnd; takenIter++) {
+      let li = document.createElement('li');
+      li.appendChild(document.createTextNode(takenArray[takenIter]));
+      takenList.appendChild(li);
     }
+  }
 }
 
-function setDownloadLinks(domain_cookie,extension_cookie){
-    var date = json_data[extension_cookie][domain_cookie].date
-    var free_download = document.getElementById("freeDownload")
-    free_download.href = "results/" + extension_cookie + "/" + domain_cookie + "/domainfree/free" + date + ".txt"
-    free_download.download = domain_cookie + "_" + extension_cookie + "_free" + date + ".txt"
-    var taken_download = document.getElementById("takenDownload")
-    taken_download.href = "results/" + extension_cookie + "/" + domain_cookie + "/domaintaken/taken" + date + ".txt"
-    taken_download.download = domain_cookie + "_" + extension_cookie + "_taken" + date + ".txt"
+// Handles the page toggle buttons.
+function pageToggle(curPage){
+  let domainCookie = getCookie('domain');
+  let extensionCookie = getCookie('extension');
+  let freePages = Math.ceil(jsonData[extensionCookie][domainCookie]['free'].length/domainsPerPage);
+  let takenPages = Math.ceil(jsonData[extensionCookie][domainCookie]['taken'].length/domainsPerPage);
+  let totalPages = freePages > takenPages ? freePages : takenPages;
+
+  // Getting the page toggle elements.
+  let back = document.getElementById('back');
+  let pageNum = document.getElementById('page-num');
+  let forward = document.getElementById('forward');
+
+  // Setting onclick handlers for the forward and back buttons.
+  back.onclick = function(){ 
+    nav(curPage-1);
+  };
+  forward.onclick = function(){ 
+    nav(curPage+1);
+  };
+
+  // Removing any disabled navigation toggles.
+  back.classList.remove('nav-toggle-disabled');
+  pageNum.classList.remove('page-num-disabled')
+  forward.classList.remove('nav-toggle-disabled');
+
+  // Handling exceptions where toggles need to be disabled.
+  if(curPage == 1 && curPage == totalPages){ // There are not multiple pages. No toggles need to be shown.
+    back.classList.add('nav-toggle-disabled');
+    pageNum.classList.add('page-num-disabled')
+    forward.classList.add('nav-toggle-disabled');
+  }
+  else if(curPage == 1){ // At the first page, cannot go back any further. Back toggle disabled.
+    back.classList.add('nav-toggle-disabled');
+    back.onclick = function(){
+      void(0); 
+    };
+  }
+  else if(curPage == totalPages){ // At the last page, cannot go any further. Forward toggle disabled.
+    forward.classList.add('nav-toggle-disabled');
+    forward.onclick = function(){
+      void(0);
+    };
+  }
+
+  // Setting the page number.
+  pageNum.innerHTML = curPage;
 }
 
-function setDateHeader(domain_cookie,extension_cookie){
-    var da = json_data[extension_cookie][domain_cookie]["date"].split("_")
-    var date_formatted = da[1] + "/" + da[2] + "/" + da[0]
-    var dateLabel = document.getElementById("dateLabel")
-    dateLabel.innerHTML = "Date Ran: " + date_formatted
+// Handles navigating to a different page.
+function nav(pageNum){
+  let domainCookie = getCookie('domain');
+  let extensionCookie = getCookie('extension');
+  fillTables(domainCookie,extensionCookie,pageNum);
+  pageToggle(pageNum);
 }

@@ -1,12 +1,12 @@
 #!/bin/bash
-# Main Script:
+# Main Script.
 # -d flag : Name of the wordlist file containing list of domain names. First will look under the "domainnames" directory, next will look at full path.
 # -e flag : Name of the wordlist file containing list of domain extensions. First will look under the "domainextensions" directory, next will look at full path.
-# -p flag : Set this to "true" if you would like to run in parallel. Set to "false" or don't include the flag to run serially.
-# -j flag : Set this to "true" if you would like to gather the latest results and format them into a JSON file. Set to "false" or don't include the flag to skip this.
+# -p flag : Set this to "true" if you would like to run in parallel. Set this to "false" or remove the flag to run serially.
+# -j flag : Set this to "true" if you would like to gather the latest results and format them into a JSON file. Set to "false" or remove the flag to skip this.
 # Example run: "./whoisscrape.sh -d samplenames.txt -e sampleextensions.txt -p true -j true"
 
-# Parsing in command line input
+# Parsing in command line input.
 while getopts d:e:p:j: flag
 do
     case "${flag}" in
@@ -17,7 +17,7 @@ do
     esac
 done
 
-# Handling errors in command line input
+# Handling errors in command line input.
 inputerror=false
 if [ "$domainfileinput" == "" ]
 then
@@ -70,7 +70,7 @@ then
     exit
 fi
 
-# Setting the correct paths for domain and extension wordlist files
+# Setting the correct paths for domain and extension wordlist files.
 if [ -f ../domainnames/$domainfileinput ]
 then
     domainfileinput="../domainnames/$domainfileinput"
@@ -80,17 +80,17 @@ then
     extensionfileinput="../domainextensions/$extensionfileinput"
 fi
 
-# Removing path and extensions from domain wordlist input
+# Removing path and extensions from domain wordlist input.
 removedpath=${domainfileinput##*/}
 domainwordlistname=${removedpath%%.*}
 
-# Checking if Result directory is setup
+# Checking if Result directory is setup.
 if [ ! -d "../results" ] 
 then
     mkdir "../results"
 fi
 
-# Checking if extension directories are setup
+# Checking if extension directories are setup.
 echo "Creating directory structure if necessary"
 while read extension || [ -n "$extension" ]
 do
@@ -107,7 +107,7 @@ do
     fi
 done < $extensionfileinput
 
-# Main loop running whois command
+# Main loop running whois command.
 time="$(date +%Y_%m_%d_%H_%M_%S)"
 
 if $parallelinput

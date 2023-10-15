@@ -1,6 +1,6 @@
 #!/bin/bash
 # Helper script.
-# This script processes the whois output to determine if domain is free, taken, or the whois quota has been reached
+# This script processes the whois output to determine if domain is free, taken, or the whois quota has been reached.
 # $1 : Whois output. This is the results from a whois query.
 # $2 : Domain Extension. example: "com"
 # Return: taken, free, error
@@ -10,7 +10,7 @@
 whoisoutput=$1
 extension=$2
 
-# Parsing the whois output
+# Parsing the whois output.
 if [ $extension == "com" ]
 then
     str=`cat $whoisoutput | head -n 1 | cut -c 1-9`
