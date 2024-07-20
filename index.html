@@ -2,79 +2,66 @@
 <html lang="en">
   <head>
     <title>whoisscrape</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="web/img/favicon.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="web/css/index.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="web/images/favicon.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="web/css/index.css" />
   </head>
   <body>
-    <div id="body-container">
-      <div class="title-container">
-        <h1>whoisscrape 
-          <a href="https://github.com/johnprovazek/whoisscrape">
-            <i class="fa fa-github-square" aria-hidden="true"></i>
-          </a>
-        </h1>
+    <div id="whoisscrape-container">
+      <div id="main-title">
+        whoisscrape
+        <a class="clickable-button" href="https://github.com/johnprovazek/whoisscrape">
+          <i class="fa fa-github-square" aria-hidden="true"></i>
+        </a>
       </div>
-      <div id="paragraph-container">
-        <p>This project site is for displaying select results from a set of Bash scripts I developed. The scripts run the <i>whois</i> command on a loop through a list of domain names and domain extensions. Change the toggles below to see sample output from the scripts.</p>
+      <div id="project-description">
+        This project site is for displaying select results from a set of Bash scripts. The scripts run the
+        <i>whois</i> command on a loop through a list of domain names and domain extensions. Change the toggles below to
+        see sample output from the scripts. These results are only as accurate as the data provided from the whois
+        servers.
       </div>
-      <div class="header-container">
-        <h2>Domain Names Wordlist:</h2>
+      <div class="subtitle">Domain Names:</div>
+      <div id="domain-toggle" class="radio-container">
+        <div id="a1" class="radio-button">a1</div>
+        <div id="a2" class="radio-button">a2</div>
+        <div id="a3" class="radio-button">a3</div>
+        <div id="n1" class="radio-button">n1</div>
+        <div id="n2" class="radio-button">n2</div>
+        <div id="n3" class="radio-button">n3</div>
+        <div id="an2" class="radio-button">an2</div>
+        <div id="an3" class="radio-button">an3</div>
+        <div id="and3" class="radio-button">and3</div>
       </div>
-      <div class="radio-container">
-        <div id="alpha1" class="radio-button domain-radio-button radio-unselected" onclick="showResults('alpha1',null)">ALPHA1</div
-        ><div id="alpha2" class="radio-button domain-radio-button radio-unselected" onclick="showResults('alpha2',null)">ALPHA2</div
-        ><div id="alpha3" class="radio-button domain-radio-button radio-unselected" onclick="showResults('alpha3',null)">ALPHA3</div
-        ><div id="englishdict" class="radio-button domain-radio-button radio-unselected" onclick="showResults('englishdict',null)">ENGLISHDICT</div
-        ><div id="names" class="radio-button domain-radio-button radio-unselected" onclick="showResults('names',null)">NAMES</div>
+      <div class="subtitle">Domain Extensions:</div>
+      <div id="extension-toggle" class="radio-container">
+        <div id="com" class="radio-button">com</div>
+        <div id="net" class="radio-button">net</div>
       </div>
-      <div class="header-container">
-        <h2>Domain Extensions:</h2>
-      </div>
-      <div class="radio-container">
-        <div id="com" class="radio-button extension-radio-button radio-unselected" onclick="showResults(null, 'com')">.com</div
-        ><div id="net" class="radio-button extension-radio-button radio-unselected" onclick="showResults(null, 'net')">.net</div
-        ><div id="io" class="radio-button extension-radio-button radio-unselected" onclick="showResults(null, 'io')">.io</div>
-      </div>
-      <div id="loading-container" class="header-container">
-        <h2 id="loading-label">Loading Data: 0%</h2>
-      </div>
-      <div id="free-taken-label-container" class="header-container">
-        <h2 class="split-header">
+      <div id="loading-label" class="subtitle">Loading Data: 0%</div>
+      <div id="free-taken-label-container" class="subtitle hidden">
+        <div>
           Free
-          <a id="free-download" class="download" href="" download="">
+          <a id="free-download" class="download clickable-button">
             <i class="fa fa-download" aria-hidden="true"></i>
           </a>
-        </h2
-        ><h2 class="split-header">
-          Taken 
-          <a id="taken-download" class="download" href="" download="">
+        </div>
+        <div>
+          Taken
+          <a id="taken-download" class="download clickable-button">
             <i class="fa fa-download" aria-hidden="true"></i>
           </a>
-        </h2>
-      </div>
-      <div id="free-taken-container">
-        <div id="free-taken-content-container">
-          <div class="free-taken-list-container">
-            <ol id="free-list"></ol>
-          </div
-          ><div class="free-taken-list-container">
-            <ol id="taken-list">
-              <li>a.com</li><li>b.com</li><li>c.com</li><li>d.com</li><li>e.com</li><li>f.com</li><li>g.com</li><li>h.com</li><li>i.com</li><li>j.com</li><li>k.com</li><li>l.com</li><li>m.com</li><li>n.com</li><li>o.com</li><li>p.com</li><li>q.com</li><li>r.com</li><li>s.com</li><li>t.com</li><li>u.com</li><li>v.com</li><li>w.com</li><li>x.com</li><li>y.com</li><li>z.com</li>
-            </ol>
-          </div>
         </div>
       </div>
-      <div class="header-container">
-        <h2 id="date-label"></h2>
+      <div id="free-taken-results-container" class="hidden">
+        <ol id="free-list"></ol>
+        <ol id="taken-list"></ol>
       </div>
-      <div class="header-container">
-        <h2>
-          <i id="back" class="fa fa-arrow-circle-left nav-toggle nav-toggle-disabled" aria-hidden="true"></i>
-          <span id="page-num"></span>
-          <i id="forward" class="fa fa-arrow-circle-right nav-toggle nav-toggle-disabled" aria-hidden="true"></i>
-        </h2>
+      <div id="date-label" class="subtitle"></div>
+      <div class="subtitle">
+        <i id="back-button" class="fa fa-arrow-circle-left hidden clickable-button" aria-hidden="true"></i>
+        <span id="page-num" class="hidden"></span>
+        <i id="next-button" class="fa fa-arrow-circle-right hidden clickable-button" aria-hidden="true"></i>
       </div>
     </div>
   </body>

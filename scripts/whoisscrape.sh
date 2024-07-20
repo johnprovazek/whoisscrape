@@ -85,7 +85,7 @@ removedpath=${domainfileinput##*/}
 domainwordlistname=${removedpath%%.*}
 
 # Checking if Result directory is setup.
-if [ ! -d "../results" ] 
+if [ ! -d "../results" ]
 then
     mkdir "../results"
 fi
@@ -94,11 +94,11 @@ fi
 echo "Creating directory structure if necessary"
 while read extension || [ -n "$extension" ]
 do
-    if [ ! -d "../results/$extension" ] 
+    if [ ! -d "../results/$extension" ]
     then
         mkdir "../results/$extension"
     fi
-    if [ ! -d "../results/$extension/$domainwordlistname" ] 
+    if [ ! -d "../results/$extension/$domainwordlistname" ]
     then
         mkdir "../results/$extension/$domainwordlistname"
         mkdir "../results/$extension/$domainwordlistname/domainerror"
@@ -127,19 +127,19 @@ then
     while read extension || [ -n "$extension" ]
     do
         takenfile="../results/$extension/$domainwordlistname/domaintaken/taken$time.txt"
-        if [ -f $takenfile ] 
+        if [ -f $takenfile ]
         then
             sort $takenfile -o $takenfile
         fi
         freefile="../results/$extension/$domainwordlistname/domainfree/free$time.txt"
-        if [ -f $freefile ] 
+        if [ -f $freefile ]
         then
-            sort $freefile  -o $freefile 
+            sort $freefile  -o $freefile
         fi
         errorfile="../results/$extension/$domainwordlistname/domainerror/error$time.txt"
-        if [ -f $errorfile ] 
+        if [ -f $errorfile ]
         then
-            sort $errorfile  -o $errorfile 
+            sort $errorfile  -o $errorfile
         fi
     done < $extensionfileinput
     echo "Deleting temp file"
@@ -168,5 +168,5 @@ fi
 if $jsoninput
 then
     echo "Formatting latest results into a JSON file"
-    python3 ./json_convert.py
+    python3 ./jsonconvert.py
 fi

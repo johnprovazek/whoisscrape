@@ -29,7 +29,7 @@ then
     if [ "$str" == "Domain Na" ] || [ "$str" == "This name" ]
     then
         echo "taken"
-    elif [ "$str" == "No match " ] || [ "$str" == "Domain no" ] 
+    elif [ "$str" == "No match " ] || [ "$str" == "Domain no" ]
     then
         echo "free"
     else

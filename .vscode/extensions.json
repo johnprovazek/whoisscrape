@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ms-python.pylint",
+    "ms-python.black-formatter",
+    "esbenp.prettier-vscode",
+    "quick-lint.quick-lint-js",
+    "htmlhint.vscode-htmlhint"
+  ]
+}

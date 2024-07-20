@@ -1,0 +1,27 @@
+{
+  "prettier.configPath": ".vscode/.prettierrc",
+  "pylint.args": ["--rcfile=.vscode/.pylintrc"],
+  "files.exclude": {
+    "local-dev/": true
+  },
+  "search.exclude": {
+    "local-dev/": true
+  },
+  "cSpell.words": [
+    "cooldomainname",
+    "domainerror",
+    "domainextensions",
+    "domainfree",
+    "domainnames",
+    "domaintaken",
+    "englishdict",
+    "iname",
+    "johnprovazek",
+    "parseoutput",
+    "richardpenman",
+    "sampleextensions",
+    "samplenames",
+    "whois",
+    "whoisscrape"
+  ]
+}
