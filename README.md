@@ -8,7 +8,13 @@ One of the discoveries upon building this project is that different domain exten
 
 Upon updating this project, a similar [python project](https://github.com/richardpenman/whois) by [richardpenman](https://github.com/richardpenman) was discovered with wide user adoption and parsing setup for many different domain extensions. Due to this discovery, this project is on hold and may be adapted in the future in favor of building off the community support found in that project. For the time being this project will exist as it was and won't receive any further enhancements.
 
-Built using Bash scripts and a Python script for formatting the results into a JSON file. Project site is developed using vanilla JavaScript.
+Built using Bash scripts. Project site developed using vanilla JavaScript.
+
+<div align="center">
+  <picture>
+    <img src="https://github.com/user-attachments/assets/3c4c1220-25c2-4d23-a982-f61a4a846402" width="830px">
+  </picture>
+</div>
 
 ## Installation
 
