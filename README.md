@@ -12,7 +12,7 @@ Built using Bash scripts. Project site developed using vanilla JavaScript.
 
 <div align="center">
   <picture>
-    <img src="https://github.com/user-attachments/assets/3c4c1220-25c2-4d23-a982-f61a4a846402" width="830px">
+    <img src="https://repository-images.githubusercontent.com/461345312/e619a27f-2e34-4761-bb55-c4f29203fc08" width="830px">
   </picture>
 </div>
 
