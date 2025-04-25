@@ -16,8 +16,13 @@ Due to this discovery, this project will be placed on hold.
 This project may be adapted in the future in favor of building off the community support found in that project.
 For the time being this project will exist as it was and will not receive any further enhancements.
 
-Built using Bash and Python scripts.
-Project site is developed using vanilla JavaScript.
+Built using Bash scripts. Project site developed using vanilla JavaScript.
+
+<div align="center">
+  <picture>
+    <img src="https://repository-images.githubusercontent.com/461345312/e619a27f-2e34-4761-bb55-c4f29203fc08" width="830px">
+  </picture>
+</div>
 
 ## Installation
 
