@@ -2,8 +2,7 @@
   font-family: "ConsolasApple";
   font-style: normal;
   unicode-range: U+000-5FF;
-  src: url("../fonts/Consolas.woff2") format("woff2"),
-    url("../fonts/Consolas.woff") format("woff");
+  src: url("../fonts/Consolas.woff2") format("woff2"), url("../fonts/Consolas.woff") format("woff");
 }
 
 :root {
@@ -28,7 +27,26 @@ body {
   overflow-y: scroll;
 }
 
-#whoisscrape-container {
+.hidden {
+  visibility: hidden;
+}
+
+.clickable-button {
+  cursor: pointer;
+  color: var(--black);
+}
+
+@media (hover: hover) {
+  .clickable-button:hover {
+    color: var(--blue);
+  }
+}
+
+.clickable-button:active {
+  color: var(--grey);
+}
+
+#whoisscrape {
   width: min(960px, 96%);
   margin: auto;
   color: var(--black);
@@ -51,19 +69,27 @@ body {
   border-radius: 4px;
 }
 
-.radio-container {
+.subtitle {
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.toggle {
   display: flex;
   background-color: var(--grey);
   border-radius: 4px;
 }
 
-.radio-selected {
+.toggle-selected {
   color: var(--light-grey);
   background-color: var(--black);
   border-radius: 4px;
 }
 
-.radio-button {
+.toggle-button {
   flex: 1 1 0;
   height: 48px;
   line-height: 48px;
@@ -71,13 +97,13 @@ body {
   text-align: center;
 }
 
-#free-taken-label-container {
+#free-taken-label {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
 }
 
-#free-taken-results-container {
+#free-taken-results {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
@@ -89,39 +115,11 @@ body {
   user-select: text;
 }
 
-#free-taken-results-container > ol {
+#free-taken-results > ol {
   padding-left: 0;
 }
 
-#free-taken-results-container > ol > li {
+#free-taken-results > ol > li {
   list-style-type: none;
   line-height: 24px;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.clickable-button {
-  cursor: pointer;
-  color: var(--black);
-}
-
-/* Media query is used to ignore hover on mobile. */
-@media (hover: hover) {
-  .clickable-button:hover {
-    color: var(--blue);
-  }
-}
-
-.clickable-button:active {
-  color: var(--grey);
-}
-
-.subtitle {
-  height: 48px;
-  line-height: 48px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
 }

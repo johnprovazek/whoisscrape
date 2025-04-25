@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="web/css/index.css" />
   </head>
   <body>
-    <div id="whoisscrape-container">
+    <div id="whoisscrape">
       <div id="main-title">
         whoisscrape
         <a class="clickable-button" href="https://github.com/johnprovazek/whoisscrape">
@@ -22,48 +22,49 @@
         servers.
       </div>
       <div class="subtitle">Domain Names:</div>
-      <div id="domain-toggle" class="radio-container">
-        <div id="a1" class="radio-button">a1</div>
-        <div id="a2" class="radio-button">a2</div>
-        <div id="a3" class="radio-button">a3</div>
-        <div id="n1" class="radio-button">n1</div>
-        <div id="n2" class="radio-button">n2</div>
-        <div id="n3" class="radio-button">n3</div>
-        <div id="an2" class="radio-button">an2</div>
-        <div id="an3" class="radio-button">an3</div>
-        <div id="and3" class="radio-button">and3</div>
+      <div id="domain-toggle" class="toggle">
+        <div class="toggle-button" data-value="a1">a1</div>
+        <div class="toggle-button" data-value="a3">a3</div>
+        <div class="toggle-button" data-value="a2">a2</div>
+        <div class="toggle-button" data-value="n1">n1</div>
+        <div class="toggle-button" data-value="n2">n2</div>
+        <div class="toggle-button" data-value="n3">n3</div>
+        <div class="toggle-button" data-value="an2">an2</div>
+        <div class="toggle-button" data-value="an3">an3</div>
+        <div class="toggle-button" data-value="and3">and3</div>
       </div>
       <div class="subtitle">Domain Extensions:</div>
-      <div id="extension-toggle" class="radio-container">
-        <div id="com" class="radio-button">com</div>
-        <div id="net" class="radio-button">net</div>
+      <div id="extension-toggle" class="toggle">
+        <div class="toggle-button" data-value="com">com</div>
+        <div class="toggle-button" data-value="net">net</div>
       </div>
-      <div id="loading-label" class="subtitle">Loading Data: 0%</div>
-      <div id="free-taken-label-container" class="subtitle hidden">
+      <div id="free-taken-label" class="subtitle hidden">
         <div>
           Free
-          <a id="free-download" class="download clickable-button">
+          <a id="free-download-button" class="download clickable-button">
             <i class="fa fa-download" aria-hidden="true"></i>
           </a>
         </div>
         <div>
           Taken
-          <a id="taken-download" class="download clickable-button">
+          <a id="taken-download-button" class="download clickable-button">
             <i class="fa fa-download" aria-hidden="true"></i>
           </a>
         </div>
       </div>
-      <div id="free-taken-results-container" class="hidden">
+      <div id="free-taken-results" class="hidden">
         <ol id="free-list"></ol>
         <ol id="taken-list"></ol>
       </div>
       <div id="date-label" class="subtitle"></div>
-      <div class="subtitle">
-        <i id="back-button" class="fa fa-arrow-circle-left hidden clickable-button" aria-hidden="true"></i>
-        <span id="page-num" class="hidden"></span>
-        <i id="next-button" class="fa fa-arrow-circle-right hidden clickable-button" aria-hidden="true"></i>
+      <div id="page-navigation" class="subtitle hidden">
+        <i id="back-button" class="fa fa-arrow-circle-left clickable-button" aria-hidden="true"></i>
+        <span id="page-num"></span>
+        <i id="next-button" class="fa fa-arrow-circle-right clickable-button" aria-hidden="true"></i>
       </div>
     </div>
   </body>
-  <script src="web/js/index.js"></script>
+  <script src="web/js/constants.js" type="module"></script>
+  <script src="web/js/utils.js" type="module"></script>
+  <script src="web/js/index.js" type="module"></script>
 </html>
